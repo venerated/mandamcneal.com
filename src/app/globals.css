@@ -1,6 +1,15 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* theme colors */
+  --color-background: #FAFAF9;
+  --color-primary: #1E1E1E;
+  --color-accent-1: #DB5A42;
+  --color-accent-2: #5E60CE;
+  --color-accent-3: #98C1D9;
+  --color-text-body: #2D2D2D;
+  --color-muted: #888888;
 }
 
 @media (prefers-color-scheme: dark) {
