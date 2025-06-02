@@ -1,0 +1,35 @@
+query pageBuilderCollectionList(
+  $preview: Boolean
+  $limit: Int
+  $order: [PageBuilderOrder]
+  $where: PageBuilderFilter
+) {
+  pageBuilderCollection(
+    limit: $limit
+    preview: $preview
+    order: $order
+    where: $where
+  ) {
+    items {
+      ...PageBuilderFieldsBase
+    }
+  }
+}
+
+query pageBuilderCollection(
+  $preview: Boolean
+  $limit: Int
+  $order: [PageBuilderOrder]
+  $where: PageBuilderFilter
+) {
+  pageBuilderCollection(
+    limit: $limit
+    preview: $preview
+    order: $order
+    where: $where
+  ) {
+    items {
+      ...PageBuilderFields
+    }
+  }
+}

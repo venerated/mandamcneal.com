@@ -1,0 +1,19 @@
+.wrap {
+  appearance: none;
+  border: var(--border-width) solid var(--color-button-border);
+  background-color: transparent;
+  padding-inline: var(--space-8);
+  padding-block: var(--space-2);
+  color: var(--color-button);
+  box-shadow: 4px 4px 0 var(--color-button-shadow);
+  cursor: pointer;
+  font-style: italic;
+  font-weight: 700;
+  text-decoration: none;
+
+  &:hover {
+    --color-button: var(--color-button--hover);
+    --color-button-border: var(--color-button-border--hover);
+    --color-button-shadow: var(--color-button-shadow--hover);
+  }
+}

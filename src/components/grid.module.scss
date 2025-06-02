@@ -1,0 +1,5 @@
+.wrap {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns), 1fr);
+  gap: var(--space-8);
+}

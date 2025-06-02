@@ -1,0 +1,14 @@
+fragment RecordFields on Record {
+  sys {
+    id
+  }
+  fieldsCollection(limit: 10) {
+    items {
+      sys {
+        id
+      }
+      label
+      value
+    }
+  }
+}

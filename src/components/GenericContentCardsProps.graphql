@@ -1,0 +1,47 @@
+fragment GenericContentCardsProps on GenericContent {
+  sys {
+    id
+  }
+  # renderAs
+  heading
+  headingSize
+  headingTag
+  # richText {
+  #   json
+  # }
+  # media {
+  #   url
+  #   width
+  #   height
+  # }
+  ctasCollection(limit: 10) {
+    items {
+      sys {
+        id
+      }
+      label
+      variant
+      url
+      target
+    }
+  }
+  referencesCollection(limit: 10) {
+    items {
+      __typename
+      ... on PageBuilder {
+        __typename
+        sys {
+          id
+        }
+        slug
+        title
+        description
+        thumbnail {
+          url
+          width
+          height
+        }
+      }
+    }
+  }
+}

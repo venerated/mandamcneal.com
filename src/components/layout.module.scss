@@ -1,0 +1,16 @@
+.wrap {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  min-block-size: 100dvh;
+  border: var(--border-width) solid var(--color-border);
+
+  @supports not (height: 100dvh) {
+    min-block-size: 100vh;
+  }
+}
+
+.content {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+}
