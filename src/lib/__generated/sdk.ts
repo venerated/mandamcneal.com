@@ -2366,9 +2366,7 @@ export type ContentfulCfblocksMultiTypeNestedFilter = {
   sys?: InputMaybe<ContentfulSysFilter>;
 };
 
-export type ContentfulGenericContentCardsPropsFragment = { __typename?: 'GenericContent', heading?: string | null, headingSize?: string | null, headingTag?: string | null, sys: { __typename?: 'Sys', id: string }, ctasCollection?: { __typename?: 'GenericContentCtasCollection', items: Array<{ __typename?: 'CallToAction', label?: string | null, variant?: string | null, url?: string | null, target?: string | null, sys: { __typename?: 'Sys', id: string } } | null> } | null, referencesCollection?: { __typename?: 'GenericContentReferencesCollection', items: Array<{ __typename: 'CallToAction' } | { __typename: 'GenericContent' } | { __typename: 'GlobalSettings' } | { __typename: 'LabelAndDescription' } | { __typename: 'Page' } | { __typename: 'PageBuilder', slug?: string | null, title?: string | null, description?: string | null, sys: { __typename?: 'Sys', id: string }, thumbnail?: { __typename?: 'Asset', url?: string | null, width?: number | null, height?: number | null } | null } | { __typename: 'Project' } | { __typename: 'Record' } | { __typename: 'RecordField' } | null> } | null };
-
-export type ContentfulGenericContentDefaultPropsFragment = { __typename?: 'GenericContent', heading?: string | null, headingSize?: string | null, headingTag?: string | null, sys: { __typename?: 'Sys', id: string }, richText?: { __typename?: 'GenericContentRichText', json: any } | null };
+export type ContentfulGenericContentPropsFragment = { __typename?: 'GenericContent', renderAs?: string | null, heading?: string | null, headingSize?: string | null, headingTag?: string | null, sys: { __typename?: 'Sys', id: string }, richText?: { __typename?: 'GenericContentRichText', json: any } | null, ctasCollection?: { __typename?: 'GenericContentCtasCollection', items: Array<{ __typename?: 'CallToAction', label?: string | null, variant?: string | null, url?: string | null, target?: string | null, sys: { __typename?: 'Sys', id: string } } | null> } | null, referencesCollection?: { __typename?: 'GenericContentReferencesCollection', items: Array<{ __typename: 'CallToAction' } | { __typename: 'GenericContent' } | { __typename: 'GlobalSettings' } | { __typename: 'LabelAndDescription' } | { __typename: 'Page' } | { __typename: 'PageBuilder', slug?: string | null, title?: string | null, description?: string | null, sys: { __typename?: 'Sys', id: string }, thumbnail?: { __typename?: 'Asset', url?: string | null, width?: number | null, height?: number | null } | null } | { __typename: 'Project' } | { __typename: 'Record' } | { __typename: 'RecordField' } | null> } | null };
 
 export type ContentfulRecordPropsFragment = { __typename?: 'Record', sys: { __typename?: 'Sys', id: string }, fieldsCollection?: { __typename?: 'RecordFieldsCollection', items: Array<{ __typename?: 'RecordField', label?: string | null, value?: string | null, sys: { __typename?: 'Sys', id: string } } | null> } | null };
 
@@ -2438,14 +2436,18 @@ export type ContentfulPageBuilderCollectionQuery = { __typename?: 'Query', pageB
 
 export type ContentfulRecordFieldsFragment = { __typename?: 'Record', sys: { __typename?: 'Sys', id: string }, fieldsCollection?: { __typename?: 'RecordFieldsCollection', items: Array<{ __typename?: 'RecordField', label?: string | null, value?: string | null, sys: { __typename?: 'Sys', id: string } } | null> } | null };
 
-export const GenericContentCardsPropsFragmentDoc = gql`
-    fragment GenericContentCardsProps on GenericContent {
+export const GenericContentPropsFragmentDoc = gql`
+    fragment GenericContentProps on GenericContent {
   sys {
     id
   }
+  renderAs
   heading
   headingSize
   headingTag
+  richText {
+    json
+  }
   ctasCollection(limit: 10) {
     items {
       sys {
@@ -2475,19 +2477,6 @@ export const GenericContentCardsPropsFragmentDoc = gql`
         }
       }
     }
-  }
-}
-    `;
-export const GenericContentDefaultPropsFragmentDoc = gql`
-    fragment GenericContentDefaultProps on GenericContent {
-  sys {
-    id
-  }
-  heading
-  headingSize
-  headingTag
-  richText {
-    json
   }
 }
     `;

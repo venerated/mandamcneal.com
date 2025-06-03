@@ -1,54 +1,19 @@
 :root {
   /* theme colors */
-  --color-light: #fafaf9;
+  --color-light: #efefe7;
   --color-primary: #141414;
-  --color-accent-1: #a661ff;
-  --color-accent-2: #e539f5;
-  --color-accent-3: #98c1d9;
-  --color-text-body: #2d2d2d;
-  --color-muted: #888888;
 
   --color-background: var(--color-light);
   --color-foreground: var(--color-primary);
 
-  --color-green: #aaf347;
-
-  // Silicagraphics
-  --color-yellow: #fcee9e;
-  --color-purple: #7d48f3;
-  --color-pink: #ca6585;
-  --color-pink-2: #ee849a;
-
-  --color-accent-1: var(--color-purple);
-
-  --color-border: var(--color-yellow);
-
-  // Scilicagrahics 2
-  --color-indigo: #5f40f1;
-  --color-blue: #4754f3;
-  --color-purple: #9047f3;
-  --color-mint: #6ee9bd;
-  --color-pink: #e647f3;
-
-  // White Text on Top
-  --color-pink: #960aa3;
-
   // Element Colors
-  --color-border: var(--color-blue);
-  --color-button: var(--color-light);
-  --color-button--hover: var(--color-mint);
-  --color-button-border: var(--color-border);
-  --color-button-border--hover: var(--color-light);
-  --color-button-shadow: var(--color-blue);
-  --color-button-shadow--hover: var(--color-light);
-  --color-highlight: var(--color-pink);
-  --color-logo: var(--color-mint);
-  --color-link: var(--color-light);
-  --color-link--hover: var(--color-mint);
-  --color-wordmark: var(--color-purple);
-
-  // Sizes
-  --border-width: 2px;
+  --color-background: var(--color-background);
+  --color-border: var(--color-foreground);
+  --color-button: var(--color-foreground);
+  --color-button--hover: var(--color-foreground);
+  --color-button-border: var(--color-foreground);
+  --color-button-border--hover: var(--color-foreground);
+  --color-button-shadow: var(--color-foreground);
 
   // Spacing
   --spacing-unit: 4px;
@@ -63,11 +28,14 @@
   --space-12: calc(var(--spacing-unit) * 12);
   --space-16: calc(var(--spacing-unit) * 16);
 
-  // Typography
-  --scan: 5; /* 0-100 – scan-line density          */
-  --bled: 0; /* 0-100 – ink bleed / blur           */
-  --xela: 50; /* 0-100 – horizontal element align   */
-  --yela: 50; /* 0-100 – vertical   element align   */
+  // Sizes
+  --border-width: 1px;
+  --border-radius: var(--space-4);
+  --button-shadow-width: 4px;
+  --button-shadow-width--hover: 0;
+
+  // Timing
+  --transition-duration: 0.2s;
 
   @media (prefers-color-scheme: dark) {
     --color-background: var(--color-primary);
@@ -86,21 +54,25 @@ html {
 }
 
 body {
-  color: var(--color-foreground);
   background-color: var(--color-background);
+  color: var(--color-foreground);
   font-family: var(--font-body);
   font-size: 16px;
   line-height: 1.5;
 }
 
 img {
-  vertical-align: middle;
-  max-width: 100%;
   height: auto;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+svg {
+  vertical-align: middle;
 }
 
 a {
-  color: var(--color-link);
+  color: inherit;
 
   &:hover {
     --color-link: var(--color-link--hover);

@@ -1,3 +1,112 @@
+@use '@/styles/mixins' as mixins;
+
 .wrap {
-  border-bottom: var(--border-width) solid var(--color-border);
+  align-items: center;
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--border-radius);
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+
+  @include mixins.media('desktop') {
+    flex-wrap: wrap;
+    overflow: hidden;
+  }
+}
+
+.logo {
+  display: block;
+  margin: var(--space-4);
+  text-decoration: none;
+}
+
+.mobileMenuTrigger {
+  display: grid;
+  height: 40px;
+  margin-inline-end: var(--space-4);
+  place-content: center;
+  width: 40px;
+}
+
+/* styles.css */
+.hamburger {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  height: 20px;
+  padding: 0;
+  position: relative;
+  width: 32px;
+
+  span {
+    background-color: var(--color-foreground);
+    display: block;
+    height: 2px;
+    left: 0;
+    position: absolute;
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
+    width: 100%;
+
+    &:nth-child(1) {
+      top: 0;
+    }
+
+    &:nth-child(2) {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    &:nth-child(3) {
+      bottom: 0;
+    }
+  }
+
+  .open & {
+    span {
+      &:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+      }
+
+      &:nth-child(2) {
+        opacity: 0;
+      }
+
+      &:nth-child(3) {
+        transform: translateY(-10px) rotate(-45deg);
+      }
+    }
+  }
+}
+
+.nav {
+  background-color: var(--color-background);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--border-radius);
+  box-shadow: var(--button-shadow-width) var(--button-shadow-width) 0
+    var(--color-button-shadow);
+  left: 0;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  top: calc(100% + 1px);
+  transition: opacity var(--transition-duration) ease-in;
+  width: 100%;
+
+  @include mixins.media('tablet') {
+    align-self: stretch;
+    box-shadow: none;
+    display: block;
+  }
+
+  .open & {
+    opacity: 1;
+    pointer-events: all;
+  }
+}
+
+.logoText {
+  margin: 0;
 }

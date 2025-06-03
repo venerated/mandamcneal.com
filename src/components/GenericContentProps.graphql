@@ -1,14 +1,14 @@
-fragment GenericContentCardsProps on GenericContent {
+fragment GenericContentProps on GenericContent {
   sys {
     id
   }
-  # renderAs
+  renderAs
   heading
   headingSize
   headingTag
-  # richText {
-  #   json
-  # }
+  richText {
+    json
+  }
   # media {
   #   url
   #   width

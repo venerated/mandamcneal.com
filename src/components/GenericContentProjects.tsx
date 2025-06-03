@@ -1,12 +1,11 @@
 import { ContentfulGenericContentPropsFragment } from '@/lib/__generated/sdk'
 import Section from './Section'
-import Grid from './Grid'
-import Card from './Card'
-
-import styles from './genericContentCards.module.scss'
+import MediaWithContent from './MediaWithContent'
 import GenericContentHeader from './GenericContentHeader'
 
-export default function GenericContentCards({
+import styles from './genericContentProjects.module.scss'
+
+export default function GenericContentProjects({
   data,
 }: {
   data: ContentfulGenericContentPropsFragment
@@ -16,11 +15,11 @@ export default function GenericContentCards({
   return (
     <Section>
       <GenericContentHeader data={data} />
-      <Grid columns={{ mobile: 1, tablet: 1, desktop: 2 }}>
+      <div className={styles.content}>
         {references?.map((item) => {
           if (item?.__typename === 'PageBuilder') {
             return (
-              <Card
+              <MediaWithContent
                 key={item?.sys?.id}
                 title={item?.title}
                 description={item.description}
@@ -30,7 +29,7 @@ export default function GenericContentCards({
             )
           }
         })}
-      </Grid>
+      </div>
     </Section>
   )
 }

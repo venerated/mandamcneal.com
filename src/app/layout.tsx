@@ -1,34 +1,28 @@
-import {
-  Zen_Dots,
-  Sixtyfour_Convergence,
-  IBM_Plex_Sans,
-} from 'next/font/google'
+import localFont from 'next/font/local'
+import { Inter } from 'next/font/google'
 
 import Layout from '@/components/Layout'
 
 import './globals.scss'
 import 'normalize.css'
 
-const workmarkFont = Zen_Dots({
-  subsets: ['latin'],
-  variable: '--font-wordmark',
-  display: 'swap',
-  weight: '400',
-})
-
-const displayFont = Sixtyfour_Convergence({
-  subsets: ['latin'],
+const displayFont = localFont({
   variable: '--font-display',
   display: 'swap',
-  axes: ['BLED', 'SCAN', 'XELA', 'YELA'],
+  src: [
+    { path: '../../public/fonts/ClashDisplay-Extralight.woff2', weight: '200' },
+    { path: '../../public/fonts/ClashDisplay-Light.woff2', weight: '300' },
+    { path: '../../public/fonts/ClashDisplay-Regular.woff2', weight: '400' },
+    { path: '../../public/fonts/ClashDisplay-Medium.woff2', weight: '500' },
+    { path: '../../public/fonts/ClashDisplay-Semibold.woff2', weight: '600' },
+    { path: '../../public/fonts/ClashDisplay-Bold.woff2', weight: '700' },
+  ],
 })
 
-const bodyFont = IBM_Plex_Sans({
-  subsets: ['latin'],
+const bodyFont = Inter({
   variable: '--font-body',
   display: 'swap',
   weight: ['400', '700'],
-  style: ['normal', 'italic'],
 })
 
 export default function RootLayout({
@@ -38,14 +32,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        {/* Here because Lightening CSS can't process `@font-palette-values` */
-        /* eslint-disable @next/next/no-css-tags */}
-        <link rel="stylesheet" href="/unminified.css" />
-      </head>
-      <body
-        className={`${displayFont.variable} ${bodyFont.variable} ${workmarkFont.variable}`}
-      >
+      <body className={`${displayFont.variable} ${bodyFont.variable}`}>
         <Layout>{children}</Layout>
       </body>
     </html>

@@ -1,16 +1,17 @@
+@use '@/styles/mixins' as mixins;
+
 .wrap {
-  display: grid;
-  grid-template-columns: max-content 1fr;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   min-block-size: 100dvh;
-  border: var(--border-width) solid var(--color-border);
+  padding: var(--space-4);
 
   @supports not (height: 100dvh) {
     min-block-size: 100vh;
   }
-}
 
-.content {
-  display: flex;
-  height: 100%;
-  flex-direction: column;
+  @include mixins.media('desktop') {
+    padding: var(--space-8);
+  }
 }

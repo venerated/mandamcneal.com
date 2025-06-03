@@ -1,25 +1,21 @@
-import { ContentfulGenericContentDefaultPropsFragment } from '@/lib/__generated/sdk'
+import { ContentfulGenericContentPropsFragment } from '@/lib/__generated/sdk'
 import Section from './Section'
-import Heading, { HeadingSizes } from './Heading'
 import RichText from './RichText'
 import CopyBlock from './CopyBlock'
+import GenericContentHeader from './GenericContentHeader'
+
+import styles from './genericContentDefault.module.scss'
 
 export default function GenericContentDefault({
   data,
 }: {
-  data: ContentfulGenericContentDefaultPropsFragment
+  data: ContentfulGenericContentPropsFragment
 }) {
-  const tag = (data?.headingTag ?? 'h2') as HeadingSizes
-  const size = (data?.headingSize ?? 'h2') as HeadingSizes
   const copy = data?.richText?.json ?? ''
 
   return (
     <Section>
-      {data?.heading ? (
-        <Heading as={tag} size={size}>
-          {data?.heading}
-        </Heading>
-      ) : null}
+      {data?.heading ? <GenericContentHeader data={data} /> : null}
       {copy ? (
         <CopyBlock>
           <RichText data={copy} />

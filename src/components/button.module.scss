@@ -1,19 +1,23 @@
 .wrap {
   appearance: none;
-  border: var(--border-width) solid var(--color-button-border);
   background-color: transparent;
-  padding-inline: var(--space-8);
-  padding-block: var(--space-2);
+  border: var(--border-width) solid var(--color-button-border);
+  border-radius: var(--border-radius);
+  box-shadow: var(--button-shadow-width) var(--button-shadow-width) 0
+    var(--color-button-shadow);
   color: var(--color-button);
-  box-shadow: 4px 4px 0 var(--color-button-shadow);
   cursor: pointer;
-  font-style: italic;
-  font-weight: 700;
+  display: inline-block;
+  font-family: var(--font-display);
+  margin-block-end: 4px;
+  padding-block: var(--space-2);
+  padding-inline: var(--space-8);
   text-decoration: none;
+  transition: box-shadow var(--transition-duration) ease-in;
 
   &:hover {
     --color-button: var(--color-button--hover);
     --color-button-border: var(--color-button-border--hover);
-    --color-button-shadow: var(--color-button-shadow--hover);
+    --button-shadow-width: var(--button-shadow-width--hover);
   }
 }

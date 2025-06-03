@@ -1,3 +1,9 @@
 .wrap {
-  color: var(--color-logo);
+  height: 100%;
+  width: 100%;
+
+  svg {
+    height: 100%;
+    width: auto;
+  }
 }

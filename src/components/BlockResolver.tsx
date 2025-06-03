@@ -1,16 +1,18 @@
 import type {
-  ContentfulGenericContentDefaultPropsFragment,
+  ContentfulGenericContentPropsFragment,
   ContentfulRecordPropsFragment,
-  ContentfulGenericContentFieldsFragment,
   ContentfulRecordFieldsFragment,
 } from '@/lib/__generated/sdk'
 import React, { lazy } from 'react'
 
 const GenericContentCards = lazy(
-  () => import('@/components/GenericContentCards'),
+  () => import('@/components/GenericContentCards')
 )
 const GenericContentDefault = lazy(
-  () => import('@/components/GenericContentDefault'),
+  () => import('@/components/GenericContentDefault')
+)
+const GenericContentProjects = lazy(
+  () => import('@/components/GenericContentProjects')
 )
 const Record = lazy(() => import('@/components/Record'))
 
@@ -18,6 +20,7 @@ type ComponentId =
   | 'GenericContent'
   | 'GenericContentCards'
   | 'GenericContentDefault'
+  | 'GenericContentProjects'
   | 'Record'
 
 export default function BlockResolver({
@@ -26,7 +29,7 @@ export default function BlockResolver({
   data:
     | (
         | (
-            | ContentfulGenericContentFieldsFragment
+            | ContentfulGenericContentPropsFragment
             | ContentfulRecordFieldsFragment
           )
         | null
@@ -43,6 +46,9 @@ export default function BlockResolver({
         case 'Cards':
           componentId = 'GenericContentCards'
           break
+        case 'Projects':
+          componentId = 'GenericContentProjects'
+          break
         default:
           componentId = 'GenericContentDefault'
       }
@@ -53,14 +59,21 @@ export default function BlockResolver({
         return (
           <GenericContentCards
             key={block?.sys.id}
-            data={block as ContentfulGenericContentDefaultPropsFragment}
+            data={block as ContentfulGenericContentPropsFragment}
           />
         )
       case 'GenericContentDefault':
         return (
           <GenericContentDefault
             key={block?.sys.id}
-            data={block as ContentfulGenericContentDefaultPropsFragment}
+            data={block as ContentfulGenericContentPropsFragment}
+          />
+        )
+      case 'GenericContentProjects':
+        return (
+          <GenericContentProjects
+            key={block?.sys.id}
+            data={block as ContentfulGenericContentPropsFragment}
           />
         )
       case 'Record':

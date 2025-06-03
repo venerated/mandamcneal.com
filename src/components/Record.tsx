@@ -13,7 +13,7 @@ export default function Record({
 }) {
   return (
     <Section className={styles.wrap}>
-      <Grid columns={2}>
+      <Grid columns={{ mobile: 1, tablet: 1, desktop: 2 }}>
         {data?.fieldsCollection?.items?.map((item) => {
           return (
             <React.Fragment key={item?.sys?.id}>

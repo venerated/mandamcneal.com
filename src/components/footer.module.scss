@@ -1,4 +1,9 @@
+@use '@/styles/mixins' as mixins;
+
 .wrap {
-  padding: var(--space-4);
-  text-align: center;
+  padding-block-start: var(--space-10);
+
+  @include mixins.media('desktop') {
+    padding-inline: var(--space-10);
+  }
 }
