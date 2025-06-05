@@ -1,7 +1,8 @@
 @use '@/styles/mixins' as mixins;
 
 .wrap {
-  border-top: var(--border-width) solid var(--color-border);
+  border-top: var(--default-border);
+  transition: border var(--default-transition);
 
   @include mixins.media('desktop') {
     border-top: 0;
@@ -23,14 +24,17 @@
 
 .listItem {
   flex: 1 1 calc(100% / var(--nav-item-count));
+  transition: border var(--default-transition);
 
   &:not(:last-child) {
-    border-bottom: var(--border-width) solid var(--color-border);
+    border-bottom: var(--default-border);
   }
 
   @include mixins.media('desktop') {
-    &:not(:first-child) {
-      border-left: var(--border-width) solid var(--color-border);
+    border-left: var(--default-border);
+
+    &:not(:last-child) {
+      border-bottom: none;
     }
   }
 }
@@ -55,7 +59,7 @@
       height: 3px;
       left: 0;
       position: absolute;
-      transition: background-color var(--transition-duration) ease-in;
+      transition: background-color var(--default-transition);
       width: 100%;
     }
   }
@@ -64,14 +68,14 @@
   &:hover {
     background-color: var(--color-foreground);
     color: var(--color-background);
+
     @include mixins.media('desktop') {
+      background-color: transparent;
+      color: var(--color-foreground);
+
       &:after {
         background-color: var(--color-border);
       }
     }
-  }
-
-  @include mixins.media('desktop') {
-    border-left: var(--border-width) solid var(--color-border);
   }
 }

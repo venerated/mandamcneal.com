@@ -1,11 +1,10 @@
-'use client'
-
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 import styles from './nav.module.scss'
 import { ContentfulNavItemFieldsFragment } from '@/lib/__generated/sdk'
 import { CSSProperties } from 'react'
+import ThemeSwitcher from './ThemeSwitcher'
 
 export default function Nav({
   data,
@@ -22,18 +21,26 @@ export default function Nav({
         className={styles.list}
         style={{ '--nav-item-count': data?.length } as CSSProperties}
       >
-        {data?.map((page, index) =>
-          page?.slug && page?.title ? (
+        {data?.map((page, index) => {
+          if (!page?.slug || !page?.title) return ''
+          const isActive =
+            page.slug === '/'
+              ? pathname === '/'
+              : pathname.startsWith(page.slug)
+          return (
             <li key={index} className={styles.listItem}>
               <Link
-                className={`${styles.listLink} ${pathname === page?.slug ? styles.listLinkActive : ''}`}
-                href={page?.slug}
+                className={`${styles.listLink} ${isActive ? styles.listLinkActive : ''}`}
+                href={page.slug}
               >
-                {page?.title}
+                {page.title}
               </Link>
             </li>
-          ) : null
-        )}
+          )
+        })}
+        <li className={styles.listItem}>
+          <ThemeSwitcher />
+        </li>
       </ul>
     </nav>
   )

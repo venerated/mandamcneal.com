@@ -29,7 +29,7 @@ query pageBuilderCollection(
     where: $where
   ) {
     items {
-      ...PageBuilderFields
+      ...PageBuilderCollectionFields
     }
   }
 }

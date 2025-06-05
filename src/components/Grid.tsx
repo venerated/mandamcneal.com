@@ -3,6 +3,7 @@ import styles from './grid.module.scss'
 export default function Grid({
   children,
   columns,
+  gap = 8,
 }: {
   children: React.ReactNode
   columns?: {
@@ -10,11 +11,13 @@ export default function Grid({
     tablet?: number
     desktop?: number
   }
+  gap?: number
 }) {
   const style = {
     '--grid-columns--mobile': columns?.mobile,
     '--grid-columns--tablet': columns?.tablet,
     '--grid-columns--desktop': columns?.desktop,
+    '--grid-gap': `var(--space-${gap})`,
   } as React.CSSProperties
 
   return (

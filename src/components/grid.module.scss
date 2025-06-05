@@ -3,7 +3,7 @@
 .wrap {
   --grid-columns: var(--grid-columns--mobile, 1);
   display: grid;
-  gap: var(--space-8);
+  gap: var(--grid-gap);
   grid-template-columns: repeat(var(--grid-columns), 1fr);
 
   @include mixins.media('tablet') {

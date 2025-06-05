@@ -2,23 +2,28 @@ fragment PageBuilderFieldsBase on PageBuilder {
   __typename
   sys {
     id
-    spaceId
   }
   slug
 }
 
-fragment PageBuilderFields on PageBuilder {
+fragment PageBuilderCollectionFields on PageBuilder {
   ...PageBuilderFieldsBase
   title
   description
+  date
   richText {
     json
   }
+  tags
   thumbnail {
     url
     width
     height
   }
+}
+
+fragment PageBuilderFields on PageBuilder {
+  ...PageBuilderCollectionFields
   blocksCollection(limit: 10) {
     items {
       __typename

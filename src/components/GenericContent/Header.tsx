@@ -1,10 +1,10 @@
 import { ContentfulGenericContentPropsFragment } from '@/lib/__generated/sdk'
-import Heading, { HeadingSizes } from './Heading'
+import Heading, { HeadingSizes } from '@/components/Heading'
 
-import styles from './genericContentHeader.module.scss'
-import Button from './Button'
+import styles from './header.module.scss'
+import Button from '@/components/Button'
 
-export default function GenericContentHeader({
+export default function Header({
   data,
 }: {
   data: ContentfulGenericContentPropsFragment

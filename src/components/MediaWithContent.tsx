@@ -1,39 +1,34 @@
 import Image from 'next/image'
+import { format, formatDistance, formatRelative, subDays } from 'date-fns'
 
 import Button from '@/components/Button'
 import Heading from '@/components/Heading'
 
 import styles from './mediaWithContent.module.scss'
 import contentfulImageLoader from '@/lib/contentfulImageLoader'
+import { ContentfulPageBuilderFieldsFragment } from '@/lib/__generated/sdk'
 
 export default function MediaWithContent({
-  title = '',
-  description = '',
-  link = '',
-  media,
-}: {
-  title: string | null | undefined
-  description: string | null | undefined
-  link: string | null | undefined
-  media:
-    | {
-        height?: number | null | undefined
-        width?: number | null | undefined
-        url?: string | null | undefined
-      }
-    | null
-    | undefined
-}) {
+  date,
+  description,
+  slug,
+  thumbnail,
+  tags,
+  title,
+}: ContentfulPageBuilderFieldsFragment) {
+  let formattedDate
+  if (date) formattedDate = format(date, 'MM/dd/yyyy')
+
   return (
     <div className={styles.wrap}>
-      {media?.url ? (
+      {thumbnail?.url ? (
         <div className={styles.media}>
           <Image
             className={styles.image}
-            src={contentfulImageLoader({ src: media.url, width: 800 })}
+            src={contentfulImageLoader({ src: thumbnail.url, width: 800 })}
             alt=""
-            width={media.width ?? 0}
-            height={media.height ?? 0}
+            width={thumbnail.width ?? 0}
+            height={thumbnail.height ?? 0}
           />
         </div>
       ) : null}
@@ -43,12 +38,24 @@ export default function MediaWithContent({
             {title}
           </Heading>
         ) : null}
+        {formattedDate ? (
+          <time className={styles.date}>{formattedDate}</time>
+        ) : null}
         {description ? (
           <div className={styles.description}>{description}</div>
         ) : null}
-        {link ? (
+        {tags?.length ? (
+          <div className={styles.tags}>
+            {tags.map((tag, index) => (
+              <div key={index} className={styles.tag}>
+                {tag}
+              </div>
+            ))}
+          </div>
+        ) : null}
+        {slug ? (
           <div className={styles.cta}>
-            <Button href={link}>Read More</Button>
+            <Button href={slug}>Read More</Button>
           </div>
         ) : null}
       </div>

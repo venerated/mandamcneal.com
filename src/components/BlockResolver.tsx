@@ -2,26 +2,39 @@ import type {
   ContentfulGenericContentPropsFragment,
   ContentfulRecordPropsFragment,
   ContentfulRecordFieldsFragment,
+  ContentfulGenericContentFieldsFragment,
 } from '@/lib/__generated/sdk'
-import React, { lazy } from 'react'
+import React, { lazy, LazyExoticComponent } from 'react'
 
-const GenericContentCards = lazy(
-  () => import('@/components/GenericContentCards')
-)
-const GenericContentDefault = lazy(
-  () => import('@/components/GenericContentDefault')
-)
-const GenericContentProjects = lazy(
-  () => import('@/components/GenericContentProjects')
-)
+type RenderAs = 'BlogListing' | 'Cards' | 'Default' | 'Listing' | 'WorkShowcase'
+
+type ComponentId = 'GenericContent' | 'Record'
+
+type LazyComponent = LazyExoticComponent<
+  ({
+    data,
+  }: {
+    data: ContentfulGenericContentPropsFragment
+  }) => React.JSX.Element
+>
+
+type LazyAsyncComponent = LazyExoticComponent<
+  ({
+    data,
+  }: {
+    data: ContentfulGenericContentPropsFragment
+  }) => Promise<React.JSX.Element>
+>
+
 const Record = lazy(() => import('@/components/Record'))
 
-type ComponentId =
-  | 'GenericContent'
-  | 'GenericContentCards'
-  | 'GenericContentDefault'
-  | 'GenericContentProjects'
-  | 'Record'
+const componentMap: Record<string, LazyComponent | LazyAsyncComponent> = {
+  BlogListing: lazy(() => import('@/components/GenericContent/BlogListing')),
+  Cards: lazy(() => import('@/components/GenericContent/Cards')),
+  Default: lazy(() => import('@/components/GenericContent/Default')),
+  Listing: lazy(() => import('@/components/GenericContent/Listing')),
+  WorkShowcase: lazy(() => import('@/components/GenericContent/WorkShowcase')),
+}
 
 export default function BlockResolver({
   data,
@@ -29,7 +42,7 @@ export default function BlockResolver({
   data:
     | (
         | (
-            | ContentfulGenericContentPropsFragment
+            | ContentfulGenericContentFieldsFragment
             | ContentfulRecordFieldsFragment
           )
         | null
@@ -41,41 +54,13 @@ export default function BlockResolver({
     if (!contentType) return <div>Missing contentType</div>
 
     let componentId: ComponentId = contentType
+    let component: LazyComponent | LazyAsyncComponent | null = null
     if (contentType === 'GenericContent') {
-      switch (block?.renderAs) {
-        case 'Cards':
-          componentId = 'GenericContentCards'
-          break
-        case 'Projects':
-          componentId = 'GenericContentProjects'
-          break
-        default:
-          componentId = 'GenericContentDefault'
-      }
+      const renderAs = (block?.renderAs ?? 'Default') as RenderAs
+      component = componentMap[renderAs]
     }
 
     switch (componentId) {
-      case 'GenericContentCards':
-        return (
-          <GenericContentCards
-            key={block?.sys.id}
-            data={block as ContentfulGenericContentPropsFragment}
-          />
-        )
-      case 'GenericContentDefault':
-        return (
-          <GenericContentDefault
-            key={block?.sys.id}
-            data={block as ContentfulGenericContentPropsFragment}
-          />
-        )
-      case 'GenericContentProjects':
-        return (
-          <GenericContentProjects
-            key={block?.sys.id}
-            data={block as ContentfulGenericContentPropsFragment}
-          />
-        )
       case 'Record':
         return (
           <Record
@@ -84,7 +69,12 @@ export default function BlockResolver({
           />
         )
       default:
-        return <div key={block?.sys.id}>Missing component</div>
+        return component
+          ? React.createElement(component, {
+              key: block?.sys?.id,
+              data: block as ContentfulGenericContentPropsFragment,
+            })
+          : null
     }
   })
 }

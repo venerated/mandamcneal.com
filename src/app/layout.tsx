@@ -7,7 +7,6 @@ import './globals.scss'
 import 'normalize.css'
 
 const displayFont = localFont({
-  variable: '--font-display',
   display: 'swap',
   src: [
     { path: '../../public/fonts/ClashDisplay-Extralight.woff2', weight: '200' },
@@ -17,11 +16,13 @@ const displayFont = localFont({
     { path: '../../public/fonts/ClashDisplay-Semibold.woff2', weight: '600' },
     { path: '../../public/fonts/ClashDisplay-Bold.woff2', weight: '700' },
   ],
+  variable: '--font-display',
 })
 
 const bodyFont = Inter({
-  variable: '--font-body',
   display: 'swap',
+  subsets: ['latin'],
+  variable: '--font-body',
   weight: ['400', '700'],
 })
 

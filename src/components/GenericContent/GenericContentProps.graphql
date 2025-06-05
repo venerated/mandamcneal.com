@@ -9,11 +9,17 @@ fragment GenericContentProps on GenericContent {
   richText {
     json
   }
-  # media {
-  #   url
-  #   width
-  #   height
-  # }
+  copy
+  mediaCollection {
+    items {
+      sys {
+        id
+      }
+      url
+      width
+      height
+    }
+  }
   ctasCollection(limit: 10) {
     items {
       sys {

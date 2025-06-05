@@ -3,7 +3,8 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw'
 import rehypeHighlight from 'rehype-highlight'
-import 'highlight.js/styles/github-dark.css' // pick your poison
+import 'highlight.js/styles/a11y-dark.css' // pick your poison
+import Heading from './Heading'
 
 type UlProps = {
   children?: React.ReactNode
@@ -16,7 +17,7 @@ const InlineUl: React.FC<UlProps> = ({ children }) => {
     .map((node, i) =>
       React.isValidElement<{ children: React.ReactNode }>(node)
         ? node.props.children
-        : node,
+        : node
     )
     .filter((item) => item !== '\n')
   const listItems = textEls?.join(', ')
@@ -39,9 +40,14 @@ export default function Markdown({
       rehypePlugins={[rehypeRaw, rehypeHighlight]}
       components={{
         h2: ({ children, ...props }) => (
-          <h2 {...props} className="mt-10 text-2xl leading-snug">
+          <Heading as="h2" size="h2" {...props}>
             {children}
-          </h2>
+          </Heading>
+        ),
+        h3: ({ children, ...props }) => (
+          <Heading as="h3" size="h3" {...props}>
+            {children}
+          </Heading>
         ),
         a: ({ href = '', children, ...props }) => (
           <a

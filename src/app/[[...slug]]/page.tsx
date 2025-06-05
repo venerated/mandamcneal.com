@@ -51,7 +51,6 @@ export async function generateStaticParams(): Promise<{ slug: string[] }[]> {
   const routes = pageBuilderCollection.items
     .filter((page): page is NonNullable<typeof page> => Boolean(page?.slug))
     .map((page) => {
-      console.log(page)
       const slugArray = page
         .slug!.split('/')
         .filter((segment) => segment.length > 0)

@@ -2,8 +2,8 @@ import Image from 'next/image'
 
 import { ContentfulPageBuilderFieldsFragment } from '@/lib/__generated/sdk'
 import Heading from './Heading'
-import CopyBlock from './CopyBlock'
-import RichText from './RichText'
+import CopyBlock from '@/components/CopyBlock'
+import RichText from '@/components/RichText'
 
 import styles from './article.module.scss'
 import contentfulImageLoader from '@/lib/contentfulImageLoader'

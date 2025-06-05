@@ -9,10 +9,13 @@ fragment GenericContentFields on GenericContent {
   richText {
     json
   }
-  media {
-    url
-    width
-    height
+  copy
+  mediaCollection {
+    items {
+      url
+      width
+      height
+    }
   }
   ctasCollection(limit: 10) {
     items {
@@ -32,7 +35,6 @@ fragment GenericContentFields on GenericContent {
         __typename
         sys {
           id
-          spaceId
         }
         slug
         title

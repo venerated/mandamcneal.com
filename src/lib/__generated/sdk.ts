@@ -476,17 +476,24 @@ export type ContentfulGenericContent = ContentfulEntry & Contentful_Node & {
   __typename?: 'GenericContent';
   _id: Scalars['ID']['output'];
   contentfulMetadata: ContentfulContentfulMetadata;
+  copy?: Maybe<Scalars['String']['output']>;
   ctasCollection?: Maybe<ContentfulGenericContentCtasCollection>;
   entryTitle?: Maybe<Scalars['String']['output']>;
   heading?: Maybe<Scalars['String']['output']>;
   headingSize?: Maybe<Scalars['String']['output']>;
   headingTag?: Maybe<Scalars['String']['output']>;
   linkedFrom?: Maybe<ContentfulGenericContentLinkingCollections>;
-  media?: Maybe<ContentfulAsset>;
+  mediaCollection?: Maybe<ContentfulAssetCollection>;
   referencesCollection?: Maybe<ContentfulGenericContentReferencesCollection>;
   renderAs?: Maybe<Scalars['String']['output']>;
   richText?: Maybe<ContentfulGenericContentRichText>;
   sys: ContentfulSys;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/2dcscgnzpk4t/content_types/genericContent) */
+export type ContentfulGenericContentCopyArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
 };
 
 
@@ -532,9 +539,11 @@ export type ContentfulGenericContentLinkedFromArgs = {
 
 
 /** [See type definition](https://app.contentful.com/spaces/2dcscgnzpk4t/content_types/genericContent) */
-export type ContentfulGenericContentMediaArgs = {
+export type ContentfulGenericContentMediaCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
 };
 
 
@@ -599,6 +608,13 @@ export type ContentfulGenericContentFilter = {
   AND?: InputMaybe<Array<InputMaybe<ContentfulGenericContentFilter>>>;
   OR?: InputMaybe<Array<InputMaybe<ContentfulGenericContentFilter>>>;
   contentfulMetadata?: InputMaybe<ContentfulContentfulMetadataFilter>;
+  copy?: InputMaybe<Scalars['String']['input']>;
+  copy_contains?: InputMaybe<Scalars['String']['input']>;
+  copy_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  copy_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  copy_not?: InputMaybe<Scalars['String']['input']>;
+  copy_not_contains?: InputMaybe<Scalars['String']['input']>;
+  copy_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   ctas?: InputMaybe<ContentfulCfCallToActionNestedFilter>;
   ctasCollection_exists?: InputMaybe<Scalars['Boolean']['input']>;
   entryTitle?: InputMaybe<Scalars['String']['input']>;
@@ -629,7 +645,7 @@ export type ContentfulGenericContentFilter = {
   heading_not?: InputMaybe<Scalars['String']['input']>;
   heading_not_contains?: InputMaybe<Scalars['String']['input']>;
   heading_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  media_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  mediaCollection_exists?: InputMaybe<Scalars['Boolean']['input']>;
   referencesCollection_exists?: InputMaybe<Scalars['Boolean']['input']>;
   renderAs?: InputMaybe<Scalars['String']['input']>;
   renderAs_contains?: InputMaybe<Scalars['String']['input']>;
@@ -668,6 +684,8 @@ export type ContentfulGenericContentLinkingCollectionsPageBuilderCollectionArgs 
 };
 
 export enum ContentfulGenericContentLinkingCollectionsPageBuilderCollectionOrder {
+  DateAsc = 'date_ASC',
+  DateDesc = 'date_DESC',
   EntryTitleAsc = 'entryTitle_ASC',
   EntryTitleDesc = 'entryTitle_DESC',
   SlugAsc = 'slug_ASC',
@@ -841,6 +859,8 @@ export type ContentfulGlobalSettingsNavigationCollection = {
 };
 
 export enum ContentfulGlobalSettingsNavigationCollectionOrder {
+  DateAsc = 'date_ASC',
+  DateDesc = 'date_DESC',
   EntryTitleAsc = 'entryTitle_ASC',
   EntryTitleDesc = 'entryTitle_DESC',
   SlugAsc = 'slug_ASC',
@@ -1108,12 +1128,14 @@ export type ContentfulPageBuilder = ContentfulEntry & Contentful_Node & {
   _id: Scalars['ID']['output'];
   blocksCollection?: Maybe<ContentfulPageBuilderBlocksCollection>;
   contentfulMetadata: ContentfulContentfulMetadata;
+  date?: Maybe<Scalars['DateTime']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   entryTitle?: Maybe<Scalars['String']['output']>;
   linkedFrom?: Maybe<ContentfulPageBuilderLinkingCollections>;
   richText?: Maybe<ContentfulPageBuilderRichText>;
   slug?: Maybe<Scalars['String']['output']>;
   sys: ContentfulSys;
+  tags?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   thumbnail?: Maybe<ContentfulAsset>;
   title?: Maybe<Scalars['String']['output']>;
 };
@@ -1126,6 +1148,12 @@ export type ContentfulPageBuilderBlocksCollectionArgs = {
   preview?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<ContentfulPageBuilderBlocksFilter>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/2dcscgnzpk4t/content_types/pageBuilder) */
+export type ContentfulPageBuilderDateArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
 };
 
 
@@ -1155,6 +1183,12 @@ export type ContentfulPageBuilderRichTextArgs = {
 
 /** [See type definition](https://app.contentful.com/spaces/2dcscgnzpk4t/content_types/pageBuilder) */
 export type ContentfulPageBuilderSlugArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/2dcscgnzpk4t/content_types/pageBuilder) */
+export type ContentfulPageBuilderTagsArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -1209,6 +1243,15 @@ export type ContentfulPageBuilderFilter = {
   blocks?: InputMaybe<ContentfulCfblocksMultiTypeNestedFilter>;
   blocksCollection_exists?: InputMaybe<Scalars['Boolean']['input']>;
   contentfulMetadata?: InputMaybe<ContentfulContentfulMetadataFilter>;
+  date?: InputMaybe<Scalars['DateTime']['input']>;
+  date_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  date_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  date_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  date_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  date_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  date_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  date_not?: InputMaybe<Scalars['DateTime']['input']>;
+  date_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
   description?: InputMaybe<Scalars['String']['input']>;
   description_contains?: InputMaybe<Scalars['String']['input']>;
   description_exists?: InputMaybe<Scalars['Boolean']['input']>;
@@ -1234,6 +1277,10 @@ export type ContentfulPageBuilderFilter = {
   slug_not_contains?: InputMaybe<Scalars['String']['input']>;
   slug_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   sys?: InputMaybe<ContentfulSysFilter>;
+  tags_contains_all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  tags_contains_none?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  tags_contains_some?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  tags_exists?: InputMaybe<Scalars['Boolean']['input']>;
   thumbnail_exists?: InputMaybe<Scalars['Boolean']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
   title_contains?: InputMaybe<Scalars['String']['input']>;
@@ -1281,6 +1328,8 @@ export enum ContentfulPageBuilderLinkingCollectionsGlobalSettingsCollectionOrder
 }
 
 export enum ContentfulPageBuilderOrder {
+  DateAsc = 'date_ASC',
+  DateDesc = 'date_DESC',
   EntryTitleAsc = 'entryTitle_ASC',
   EntryTitleDesc = 'entryTitle_DESC',
   SlugAsc = 'slug_ASC',
@@ -2141,6 +2190,8 @@ export type ContentfulRecordLinkingCollectionsPageBuilderCollectionArgs = {
 };
 
 export enum ContentfulRecordLinkingCollectionsPageBuilderCollectionOrder {
+  DateAsc = 'date_ASC',
+  DateDesc = 'date_DESC',
   EntryTitleAsc = 'entryTitle_ASC',
   EntryTitleDesc = 'entryTitle_DESC',
   SlugAsc = 'slug_ASC',
@@ -2289,6 +2340,15 @@ export type ContentfulCfPageBuilderNestedFilter = {
   OR?: InputMaybe<Array<InputMaybe<ContentfulCfPageBuilderNestedFilter>>>;
   blocksCollection_exists?: InputMaybe<Scalars['Boolean']['input']>;
   contentfulMetadata?: InputMaybe<ContentfulContentfulMetadataFilter>;
+  date?: InputMaybe<Scalars['DateTime']['input']>;
+  date_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  date_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  date_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  date_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  date_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  date_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  date_not?: InputMaybe<Scalars['DateTime']['input']>;
+  date_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
   description?: InputMaybe<Scalars['String']['input']>;
   description_contains?: InputMaybe<Scalars['String']['input']>;
   description_exists?: InputMaybe<Scalars['Boolean']['input']>;
@@ -2314,6 +2374,10 @@ export type ContentfulCfPageBuilderNestedFilter = {
   slug_not_contains?: InputMaybe<Scalars['String']['input']>;
   slug_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   sys?: InputMaybe<ContentfulSysFilter>;
+  tags_contains_all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  tags_contains_none?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  tags_contains_some?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  tags_exists?: InputMaybe<Scalars['Boolean']['input']>;
   thumbnail_exists?: InputMaybe<Scalars['Boolean']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
   title_contains?: InputMaybe<Scalars['String']['input']>;
@@ -2366,11 +2430,11 @@ export type ContentfulCfblocksMultiTypeNestedFilter = {
   sys?: InputMaybe<ContentfulSysFilter>;
 };
 
-export type ContentfulGenericContentPropsFragment = { __typename?: 'GenericContent', renderAs?: string | null, heading?: string | null, headingSize?: string | null, headingTag?: string | null, sys: { __typename?: 'Sys', id: string }, richText?: { __typename?: 'GenericContentRichText', json: any } | null, ctasCollection?: { __typename?: 'GenericContentCtasCollection', items: Array<{ __typename?: 'CallToAction', label?: string | null, variant?: string | null, url?: string | null, target?: string | null, sys: { __typename?: 'Sys', id: string } } | null> } | null, referencesCollection?: { __typename?: 'GenericContentReferencesCollection', items: Array<{ __typename: 'CallToAction' } | { __typename: 'GenericContent' } | { __typename: 'GlobalSettings' } | { __typename: 'LabelAndDescription' } | { __typename: 'Page' } | { __typename: 'PageBuilder', slug?: string | null, title?: string | null, description?: string | null, sys: { __typename?: 'Sys', id: string }, thumbnail?: { __typename?: 'Asset', url?: string | null, width?: number | null, height?: number | null } | null } | { __typename: 'Project' } | { __typename: 'Record' } | { __typename: 'RecordField' } | null> } | null };
+export type ContentfulGenericContentPropsFragment = { __typename?: 'GenericContent', renderAs?: string | null, heading?: string | null, headingSize?: string | null, headingTag?: string | null, copy?: string | null, sys: { __typename?: 'Sys', id: string }, richText?: { __typename?: 'GenericContentRichText', json: any } | null, mediaCollection?: { __typename?: 'AssetCollection', items: Array<{ __typename?: 'Asset', url?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } | null, ctasCollection?: { __typename?: 'GenericContentCtasCollection', items: Array<{ __typename?: 'CallToAction', label?: string | null, variant?: string | null, url?: string | null, target?: string | null, sys: { __typename?: 'Sys', id: string } } | null> } | null, referencesCollection?: { __typename?: 'GenericContentReferencesCollection', items: Array<{ __typename: 'CallToAction' } | { __typename: 'GenericContent' } | { __typename: 'GlobalSettings' } | { __typename: 'LabelAndDescription' } | { __typename: 'Page' } | { __typename: 'PageBuilder', slug?: string | null, title?: string | null, description?: string | null, sys: { __typename?: 'Sys', id: string }, thumbnail?: { __typename?: 'Asset', url?: string | null, width?: number | null, height?: number | null } | null } | { __typename: 'Project' } | { __typename: 'Record' } | { __typename: 'RecordField' } | null> } | null };
 
 export type ContentfulRecordPropsFragment = { __typename?: 'Record', sys: { __typename?: 'Sys', id: string }, fieldsCollection?: { __typename?: 'RecordFieldsCollection', items: Array<{ __typename?: 'RecordField', label?: string | null, value?: string | null, sys: { __typename?: 'Sys', id: string } } | null> } | null };
 
-export type ContentfulGenericContentFieldsFragment = { __typename?: 'GenericContent', renderAs?: string | null, heading?: string | null, headingSize?: string | null, headingTag?: string | null, sys: { __typename?: 'Sys', id: string }, richText?: { __typename?: 'GenericContentRichText', json: any } | null, media?: { __typename?: 'Asset', url?: string | null, width?: number | null, height?: number | null } | null, ctasCollection?: { __typename?: 'GenericContentCtasCollection', items: Array<{ __typename?: 'CallToAction', label?: string | null, variant?: string | null, url?: string | null, target?: string | null, sys: { __typename?: 'Sys', id: string } } | null> } | null, referencesCollection?: { __typename?: 'GenericContentReferencesCollection', items: Array<{ __typename: 'CallToAction' } | { __typename: 'GenericContent' } | { __typename: 'GlobalSettings' } | { __typename: 'LabelAndDescription' } | { __typename: 'Page' } | { __typename: 'PageBuilder', slug?: string | null, title?: string | null, description?: string | null, sys: { __typename?: 'Sys', id: string, spaceId: string }, thumbnail?: { __typename?: 'Asset', url?: string | null, width?: number | null, height?: number | null } | null } | { __typename: 'Project' } | { __typename: 'Record' } | { __typename: 'RecordField' } | null> } | null };
+export type ContentfulGenericContentFieldsFragment = { __typename?: 'GenericContent', renderAs?: string | null, heading?: string | null, headingSize?: string | null, headingTag?: string | null, copy?: string | null, sys: { __typename?: 'Sys', id: string }, richText?: { __typename?: 'GenericContentRichText', json: any } | null, mediaCollection?: { __typename?: 'AssetCollection', items: Array<{ __typename?: 'Asset', url?: string | null, width?: number | null, height?: number | null } | null> } | null, ctasCollection?: { __typename?: 'GenericContentCtasCollection', items: Array<{ __typename?: 'CallToAction', label?: string | null, variant?: string | null, url?: string | null, target?: string | null, sys: { __typename?: 'Sys', id: string } } | null> } | null, referencesCollection?: { __typename?: 'GenericContentReferencesCollection', items: Array<{ __typename: 'CallToAction' } | { __typename: 'GenericContent' } | { __typename: 'GlobalSettings' } | { __typename: 'LabelAndDescription' } | { __typename: 'Page' } | { __typename: 'PageBuilder', slug?: string | null, title?: string | null, description?: string | null, sys: { __typename?: 'Sys', id: string }, thumbnail?: { __typename?: 'Asset', url?: string | null, width?: number | null, height?: number | null } | null } | { __typename: 'Project' } | { __typename: 'Record' } | { __typename: 'RecordField' } | null> } | null };
 
 export type ContentfulGlobalSettingsQueryVariables = Exact<{
   preview?: InputMaybe<Scalars['Boolean']['input']>;
@@ -2384,17 +2448,22 @@ export type ContentfulGlobalSettingsQuery = { __typename?: 'Query', globalSettin
 
 export type ContentfulNavItemFieldsFragment = { __typename?: 'PageBuilder', title?: string | null, slug?: string | null, sys: { __typename?: 'Sys', id: string } };
 
-export type ContentfulPageBuilderFieldsBaseFragment = { __typename: 'PageBuilder', slug?: string | null, sys: { __typename?: 'Sys', id: string, spaceId: string } };
+export type ContentfulPageBuilderFieldsBaseFragment = { __typename: 'PageBuilder', slug?: string | null, sys: { __typename?: 'Sys', id: string } };
+
+export type ContentfulPageBuilderCollectionFieldsFragment = (
+  { __typename?: 'PageBuilder', title?: string | null, description?: string | null, date?: any | null, tags?: Array<string | null> | null, richText?: { __typename?: 'PageBuilderRichText', json: any } | null, thumbnail?: { __typename?: 'Asset', url?: string | null, width?: number | null, height?: number | null } | null }
+  & ContentfulPageBuilderFieldsBaseFragment
+);
 
 export type ContentfulPageBuilderFieldsFragment = (
-  { __typename?: 'PageBuilder', title?: string | null, description?: string | null, richText?: { __typename?: 'PageBuilderRichText', json: any } | null, thumbnail?: { __typename?: 'Asset', url?: string | null, width?: number | null, height?: number | null } | null, blocksCollection?: { __typename?: 'PageBuilderBlocksCollection', items: Array<(
+  { __typename?: 'PageBuilder', blocksCollection?: { __typename?: 'PageBuilderBlocksCollection', items: Array<(
       { __typename: 'GenericContent' }
       & ContentfulGenericContentFieldsFragment
     ) | (
       { __typename: 'Record' }
       & ContentfulRecordFieldsFragment
     ) | null> } | null }
-  & ContentfulPageBuilderFieldsBaseFragment
+  & ContentfulPageBuilderCollectionFieldsFragment
 );
 
 export type ContentfulPageBuilderQueryVariables = Exact<{
@@ -2431,7 +2500,7 @@ export type ContentfulPageBuilderCollectionQueryVariables = Exact<{
 
 export type ContentfulPageBuilderCollectionQuery = { __typename?: 'Query', pageBuilderCollection?: { __typename?: 'PageBuilderCollection', items: Array<(
       { __typename?: 'PageBuilder' }
-      & ContentfulPageBuilderFieldsFragment
+      & ContentfulPageBuilderCollectionFieldsFragment
     ) | null> } | null };
 
 export type ContentfulRecordFieldsFragment = { __typename?: 'Record', sys: { __typename?: 'Sys', id: string }, fieldsCollection?: { __typename?: 'RecordFieldsCollection', items: Array<{ __typename?: 'RecordField', label?: string | null, value?: string | null, sys: { __typename?: 'Sys', id: string } } | null> } | null };
@@ -2447,6 +2516,17 @@ export const GenericContentPropsFragmentDoc = gql`
   headingTag
   richText {
     json
+  }
+  copy
+  mediaCollection {
+    items {
+      sys {
+        id
+      }
+      url
+      width
+      height
+    }
   }
   ctasCollection(limit: 10) {
     items {
@@ -2510,9 +2590,25 @@ export const PageBuilderFieldsBaseFragmentDoc = gql`
   __typename
   sys {
     id
-    spaceId
   }
   slug
+}
+    `;
+export const PageBuilderCollectionFieldsFragmentDoc = gql`
+    fragment PageBuilderCollectionFields on PageBuilder {
+  ...PageBuilderFieldsBase
+  title
+  description
+  date
+  richText {
+    json
+  }
+  tags
+  thumbnail {
+    url
+    width
+    height
+  }
 }
     `;
 export const RecordFieldsFragmentDoc = gql`
@@ -2543,10 +2639,13 @@ export const GenericContentFieldsFragmentDoc = gql`
   richText {
     json
   }
-  media {
-    url
-    width
-    height
+  copy
+  mediaCollection {
+    items {
+      url
+      width
+      height
+    }
   }
   ctasCollection(limit: 10) {
     items {
@@ -2566,7 +2665,6 @@ export const GenericContentFieldsFragmentDoc = gql`
         __typename
         sys {
           id
-          spaceId
         }
         slug
         title
@@ -2583,17 +2681,7 @@ export const GenericContentFieldsFragmentDoc = gql`
     `;
 export const PageBuilderFieldsFragmentDoc = gql`
     fragment PageBuilderFields on PageBuilder {
-  ...PageBuilderFieldsBase
-  title
-  description
-  richText {
-    json
-  }
-  thumbnail {
-    url
-    width
-    height
-  }
+  ...PageBuilderCollectionFields
   blocksCollection(limit: 10) {
     items {
       __typename
@@ -2631,6 +2719,7 @@ export const PageBuilderDocument = gql`
   }
 }
     ${PageBuilderFieldsFragmentDoc}
+${PageBuilderCollectionFieldsFragmentDoc}
 ${PageBuilderFieldsBaseFragmentDoc}
 ${RecordFieldsFragmentDoc}
 ${GenericContentFieldsFragmentDoc}`;
@@ -2657,14 +2746,12 @@ export const PageBuilderCollectionDocument = gql`
     where: $where
   ) {
     items {
-      ...PageBuilderFields
+      ...PageBuilderCollectionFields
     }
   }
 }
-    ${PageBuilderFieldsFragmentDoc}
-${PageBuilderFieldsBaseFragmentDoc}
-${RecordFieldsFragmentDoc}
-${GenericContentFieldsFragmentDoc}`;
+    ${PageBuilderCollectionFieldsFragmentDoc}
+${PageBuilderFieldsBaseFragmentDoc}`;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string, variables?: any) => Promise<T>;
 

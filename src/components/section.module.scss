@@ -1,8 +1,9 @@
 @use '@/styles/mixins' as mixins;
 
 .wrap {
-  border-bottom: var(--border-width) solid var(--color-border);
+  border-bottom: var(--default-border);
   padding-block: var(--space-10);
+  transition: border var(--default-transition);
 
   @include mixins.media('desktop') {
     padding-inline: var(--space-10);

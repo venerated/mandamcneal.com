@@ -13,7 +13,9 @@
   padding-block: var(--space-2);
   padding-inline: var(--space-8);
   text-decoration: none;
-  transition: box-shadow var(--transition-duration) ease-in;
+  transition:
+    box-shadow var(--default-transition),
+    color var(--default-transition);
 
   &:hover {
     --color-button: var(--color-button--hover);

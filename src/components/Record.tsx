@@ -1,6 +1,6 @@
 import { ContentfulRecordPropsFragment } from '@/lib/__generated/sdk'
-import Section from './Section'
-import Grid from './Grid'
+import Section from '@/components/Section'
+import Grid from '@/components/Grid'
 import React from 'react'
 import Markdown from './Markdown'
 
@@ -13,16 +13,14 @@ export default function Record({
 }) {
   return (
     <Section className={styles.wrap}>
-      <Grid columns={{ mobile: 1, tablet: 1, desktop: 2 }}>
-        {data?.fieldsCollection?.items?.map((item) => {
-          return (
-            <React.Fragment key={item?.sys?.id}>
-              <div>{item?.label}</div>
-              <Markdown md={item?.value ?? null} listInline={true} />
-            </React.Fragment>
-          )
-        })}
-      </Grid>
+      <div className={styles.grid}>
+        {data?.fieldsCollection?.items?.map((item) => (
+          <React.Fragment key={item?.sys?.id}>
+            <div className={styles.label}>{item?.label}</div>
+            <Markdown md={item?.value ?? null} listInline={true} />
+          </React.Fragment>
+        ))}
+      </div>
     </Section>
   )
 }

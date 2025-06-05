@@ -321,13 +321,14 @@ enum EntryOrder {
 type GenericContent implements Entry & _Node {
   _id: ID!
   contentfulMetadata: ContentfulMetadata!
+  copy(locale: String): String
   ctasCollection(limit: Int = 100, locale: String, order: [GenericContentCtasCollectionOrder], preview: Boolean, skip: Int = 0, where: CallToActionFilter): GenericContentCtasCollection
   entryTitle(locale: String): String
   heading(locale: String): String
   headingSize(locale: String): String
   headingTag(locale: String): String
   linkedFrom(allowedLocales: [String]): GenericContentLinkingCollections
-  media(locale: String, preview: Boolean): Asset
+  mediaCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): AssetCollection
   referencesCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): GenericContentReferencesCollection
   renderAs(locale: String): String
   richText(locale: String): GenericContentRichText
@@ -373,6 +374,13 @@ input GenericContentFilter {
   AND: [GenericContentFilter]
   OR: [GenericContentFilter]
   contentfulMetadata: ContentfulMetadataFilter
+  copy: String
+  copy_contains: String
+  copy_exists: Boolean
+  copy_in: [String]
+  copy_not: String
+  copy_not_contains: String
+  copy_not_in: [String]
   ctas: cfCallToActionNestedFilter
   ctasCollection_exists: Boolean
   entryTitle: String
@@ -403,7 +411,7 @@ input GenericContentFilter {
   heading_not: String
   heading_not_contains: String
   heading_not_in: [String]
-  media_exists: Boolean
+  mediaCollection_exists: Boolean
   referencesCollection_exists: Boolean
   renderAs: String
   renderAs_contains: String
@@ -424,6 +432,8 @@ type GenericContentLinkingCollections {
 }
 
 enum GenericContentLinkingCollectionsPageBuilderCollectionOrder {
+  date_ASC
+  date_DESC
   entryTitle_ASC
   entryTitle_DESC
   slug_ASC
@@ -555,6 +565,8 @@ type GlobalSettingsNavigationCollection {
 }
 
 enum GlobalSettingsNavigationCollectionOrder {
+  date_ASC
+  date_DESC
   entryTitle_ASC
   entryTitle_DESC
   slug_ASC
@@ -808,12 +820,14 @@ type PageBuilder implements Entry & _Node {
   _id: ID!
   blocksCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, where: PageBuilderBlocksFilter): PageBuilderBlocksCollection
   contentfulMetadata: ContentfulMetadata!
+  date(locale: String): DateTime
   description(locale: String): String
   entryTitle(locale: String): String
   linkedFrom(allowedLocales: [String]): PageBuilderLinkingCollections
   richText(locale: String): PageBuilderRichText
   slug(locale: String): String
   sys: Sys!
+  tags(locale: String): [String]
   thumbnail(locale: String, preview: Boolean): Asset
   title(locale: String): String
 }
@@ -854,6 +868,15 @@ input PageBuilderFilter {
   blocks: cfblocksMultiTypeNestedFilter
   blocksCollection_exists: Boolean
   contentfulMetadata: ContentfulMetadataFilter
+  date: DateTime
+  date_exists: Boolean
+  date_gt: DateTime
+  date_gte: DateTime
+  date_in: [DateTime]
+  date_lt: DateTime
+  date_lte: DateTime
+  date_not: DateTime
+  date_not_in: [DateTime]
   description: String
   description_contains: String
   description_exists: Boolean
@@ -879,6 +902,10 @@ input PageBuilderFilter {
   slug_not_contains: String
   slug_not_in: [String]
   sys: SysFilter
+  tags_contains_all: [String]
+  tags_contains_none: [String]
+  tags_contains_some: [String]
+  tags_exists: Boolean
   thumbnail_exists: Boolean
   title: String
   title_contains: String
@@ -908,6 +935,8 @@ enum PageBuilderLinkingCollectionsGlobalSettingsCollectionOrder {
 }
 
 enum PageBuilderOrder {
+  date_ASC
+  date_DESC
   entryTitle_ASC
   entryTitle_DESC
   slug_ASC
@@ -1383,6 +1412,8 @@ type RecordLinkingCollections {
 }
 
 enum RecordLinkingCollectionsPageBuilderCollectionOrder {
+  date_ASC
+  date_DESC
   entryTitle_ASC
   entryTitle_DESC
   slug_ASC
@@ -1529,6 +1560,15 @@ input cfPageBuilderNestedFilter {
   OR: [cfPageBuilderNestedFilter]
   blocksCollection_exists: Boolean
   contentfulMetadata: ContentfulMetadataFilter
+  date: DateTime
+  date_exists: Boolean
+  date_gt: DateTime
+  date_gte: DateTime
+  date_in: [DateTime]
+  date_lt: DateTime
+  date_lte: DateTime
+  date_not: DateTime
+  date_not_in: [DateTime]
   description: String
   description_contains: String
   description_exists: Boolean
@@ -1554,6 +1594,10 @@ input cfPageBuilderNestedFilter {
   slug_not_contains: String
   slug_not_in: [String]
   sys: SysFilter
+  tags_contains_all: [String]
+  tags_contains_none: [String]
+  tags_contains_some: [String]
+  tags_exists: Boolean
   thumbnail_exists: Boolean
   title: String
   title_contains: String

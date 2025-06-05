@@ -7,7 +7,6 @@
   --color-foreground: var(--color-primary);
 
   // Element Colors
-  --color-background: var(--color-background);
   --color-border: var(--color-foreground);
   --color-button: var(--color-foreground);
   --color-button--hover: var(--color-foreground);
@@ -36,11 +35,9 @@
 
   // Timing
   --transition-duration: 0.2s;
+  --default-transition: var(--transition-duration) ease-in;
 
-  @media (prefers-color-scheme: dark) {
-    --color-background: var(--color-primary);
-    --color-foreground: var(--color-light);
-  }
+  --default-border: var(--border-width) solid var(--color-border);
 }
 
 html {
@@ -59,6 +56,9 @@ body {
   font-family: var(--font-body);
   font-size: 16px;
   line-height: 1.5;
+  transition:
+    background-color var(--default-transition),
+    color var(--default-transition);
 }
 
 img {
@@ -79,8 +79,17 @@ a {
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+.theme-dark {
+  --color-background: var(--color-primary);
+  --color-foreground: var(--color-light);
+
+  // Element Colors
+  --color-border: var(--color-foreground);
+  --color-button: var(--color-foreground);
+  --color-button--hover: var(--color-foreground);
+  --color-button-border: var(--color-foreground);
+  --color-button-border--hover: var(--color-foreground);
+  --color-button-shadow: var(--color-foreground);
+
+  --default-border: var(--border-width) solid var(--color-border);
 }

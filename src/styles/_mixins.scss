@@ -14,7 +14,7 @@ $breakpoints: (
 );
 
 @mixin media($label) {
-  $size: map-get($breakpoints, $label);
+  $size: map.get($breakpoints, $label);
   @if $size {
     @media (min-width: $size) {
       @content;
