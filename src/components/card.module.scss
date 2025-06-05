@@ -1,0 +1,29 @@
+.wrap {
+  border: var(--default-border);
+  transition: border var(--default-transition);
+}
+
+.media {
+  aspect-ratio: 402 / 227;
+  border-bottom: var(--default-border);
+  transition: border var(--default-transition);
+}
+
+.image {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.content {
+  padding-block: var(--space-6);
+  padding-inline: var(--space-4);
+}
+
+.title {
+  margin-bottom: var(--space-4);
+}
+
+.description {
+  margin-bottom: var(--space-4);
+}

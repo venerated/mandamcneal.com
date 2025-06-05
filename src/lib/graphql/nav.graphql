@@ -1,0 +1,7 @@
+fragment NavItemFields on PageBuilder {
+  sys {
+    id
+  }
+  title
+  slug
+}

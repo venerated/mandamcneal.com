@@ -1,0 +1,1651 @@
+directive @contentSourceMaps on QUERY
+
+"""Represents a binary file in a space. An asset can be any file type."""
+type Asset {
+  contentType(locale: String): String
+  contentfulMetadata: ContentfulMetadata!
+  description(locale: String): String
+  fileName(locale: String): String
+  height(locale: String): Int
+  linkedFrom(allowedLocales: [String]): AssetLinkingCollections
+  size(locale: String): Int
+  sys: Sys!
+  title(locale: String): String
+  url(locale: String, transform: ImageTransformOptions): String
+  width(locale: String): Int
+}
+
+type AssetCollection {
+  items: [Asset]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+input AssetFilter {
+  AND: [AssetFilter]
+  OR: [AssetFilter]
+  contentType: String
+  contentType_contains: String
+  contentType_exists: Boolean
+  contentType_in: [String]
+  contentType_not: String
+  contentType_not_contains: String
+  contentType_not_in: [String]
+  contentfulMetadata: ContentfulMetadataFilter
+  description: String
+  description_contains: String
+  description_exists: Boolean
+  description_in: [String]
+  description_not: String
+  description_not_contains: String
+  description_not_in: [String]
+  fileName: String
+  fileName_contains: String
+  fileName_exists: Boolean
+  fileName_in: [String]
+  fileName_not: String
+  fileName_not_contains: String
+  fileName_not_in: [String]
+  height: Int
+  height_exists: Boolean
+  height_gt: Int
+  height_gte: Int
+  height_in: [Int]
+  height_lt: Int
+  height_lte: Int
+  height_not: Int
+  height_not_in: [Int]
+  size: Int
+  size_exists: Boolean
+  size_gt: Int
+  size_gte: Int
+  size_in: [Int]
+  size_lt: Int
+  size_lte: Int
+  size_not: Int
+  size_not_in: [Int]
+  sys: SysFilter
+  title: String
+  title_contains: String
+  title_exists: Boolean
+  title_in: [String]
+  title_not: String
+  title_not_contains: String
+  title_not_in: [String]
+  url: String
+  url_contains: String
+  url_exists: Boolean
+  url_in: [String]
+  url_not: String
+  url_not_contains: String
+  url_not_in: [String]
+  width: Int
+  width_exists: Boolean
+  width_gt: Int
+  width_gte: Int
+  width_in: [Int]
+  width_lt: Int
+  width_lte: Int
+  width_not: Int
+  width_not_in: [Int]
+}
+
+type AssetLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  genericContentCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): GenericContentCollection
+  pageBuilderCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): PageBuilderCollection
+  projectCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ProjectCollection
+}
+
+enum AssetOrder {
+  contentType_ASC
+  contentType_DESC
+  fileName_ASC
+  fileName_DESC
+  height_ASC
+  height_DESC
+  size_ASC
+  size_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  url_ASC
+  url_DESC
+  width_ASC
+  width_DESC
+}
+
+"""
+[See type definition](https://app.contentful.com/spaces/2dcscgnzpk4t/content_types/callToAction)
+"""
+type CallToAction implements Entry & _Node {
+  _id: ID!
+  contentfulMetadata: ContentfulMetadata!
+  entryTitle(locale: String): String
+  label(locale: String): String
+  linkedFrom(allowedLocales: [String]): CallToActionLinkingCollections
+  sys: Sys!
+  target(locale: String): String
+  url(locale: String): String
+  variant(locale: String): String
+}
+
+type CallToActionCollection {
+  items: [CallToAction]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+input CallToActionFilter {
+  AND: [CallToActionFilter]
+  OR: [CallToActionFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  entryTitle: String
+  entryTitle_contains: String
+  entryTitle_exists: Boolean
+  entryTitle_in: [String]
+  entryTitle_not: String
+  entryTitle_not_contains: String
+  entryTitle_not_in: [String]
+  label: String
+  label_contains: String
+  label_exists: Boolean
+  label_in: [String]
+  label_not: String
+  label_not_contains: String
+  label_not_in: [String]
+  sys: SysFilter
+  target: String
+  target_contains: String
+  target_exists: Boolean
+  target_in: [String]
+  target_not: String
+  target_not_contains: String
+  target_not_in: [String]
+  url: String
+  url_contains: String
+  url_exists: Boolean
+  url_in: [String]
+  url_not: String
+  url_not_contains: String
+  url_not_in: [String]
+  variant: String
+  variant_contains: String
+  variant_exists: Boolean
+  variant_in: [String]
+  variant_not: String
+  variant_not_contains: String
+  variant_not_in: [String]
+}
+
+type CallToActionLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  genericContentCollection(limit: Int = 100, locale: String, order: [CallToActionLinkingCollectionsGenericContentCollectionOrder], preview: Boolean, skip: Int = 0): GenericContentCollection
+}
+
+enum CallToActionLinkingCollectionsGenericContentCollectionOrder {
+  entryTitle_ASC
+  entryTitle_DESC
+  headingSize_ASC
+  headingSize_DESC
+  headingTag_ASC
+  headingTag_DESC
+  heading_ASC
+  heading_DESC
+  renderAs_ASC
+  renderAs_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+enum CallToActionOrder {
+  entryTitle_ASC
+  entryTitle_DESC
+  label_ASC
+  label_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  target_ASC
+  target_DESC
+  url_ASC
+  url_DESC
+  variant_ASC
+  variant_DESC
+}
+
+type ContentfulMetadata {
+  concepts: [TaxonomyConcept]!
+  tags: [ContentfulTag]!
+}
+
+input ContentfulMetadataConceptsDescendantsFilter {
+  id_contains_all: [String]
+  id_contains_none: [String]
+  id_contains_some: [String]
+}
+
+input ContentfulMetadataConceptsFilter {
+  descendants: ContentfulMetadataConceptsDescendantsFilter
+  id_contains_all: [String]
+  id_contains_none: [String]
+  id_contains_some: [String]
+}
+
+input ContentfulMetadataFilter {
+  concepts: ContentfulMetadataConceptsFilter
+  concepts_exists: Boolean
+  tags: ContentfulMetadataTagsFilter
+  tags_exists: Boolean
+}
+
+input ContentfulMetadataTagsFilter {
+  id_contains_all: [String]
+  id_contains_none: [String]
+  id_contains_some: [String]
+}
+
+"""
+Represents a tag entity for finding and organizing content easily.
+      Find out more here: https://www.contentful.com/developers/docs/references/content-delivery-api/#/reference/content-tags
+"""
+type ContentfulTag {
+  id: String
+  name: String
+}
+
+"""
+A date-time string at UTC, such as 2007-12-03T10:15:30Z,
+    compliant with the 'date-time' format outlined in section 5.6 of
+    the RFC 3339 profile of the ISO 8601 standard for representation
+    of dates and times using the Gregorian calendar.
+"""
+scalar DateTime
+
+"""
+The 'Dimension' type represents dimensions as whole numeric values between `1` and `4000`.
+"""
+scalar Dimension
+
+interface Entry {
+  contentfulMetadata: ContentfulMetadata!
+  sys: Sys!
+}
+
+type EntryCollection {
+  items: [Entry]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+input EntryFilter {
+  AND: [EntryFilter]
+  OR: [EntryFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  sys: SysFilter
+}
+
+enum EntryOrder {
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+"""
+[See type definition](https://app.contentful.com/spaces/2dcscgnzpk4t/content_types/genericContent)
+"""
+type GenericContent implements Entry & _Node {
+  _id: ID!
+  contentfulMetadata: ContentfulMetadata!
+  copy(locale: String): String
+  ctasCollection(limit: Int = 100, locale: String, order: [GenericContentCtasCollectionOrder], preview: Boolean, skip: Int = 0, where: CallToActionFilter): GenericContentCtasCollection
+  entryTitle(locale: String): String
+  heading(locale: String): String
+  headingSize(locale: String): String
+  headingTag(locale: String): String
+  linkedFrom(allowedLocales: [String]): GenericContentLinkingCollections
+  mediaCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): AssetCollection
+  referencesCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): GenericContentReferencesCollection
+  renderAs(locale: String): String
+  richText(locale: String): GenericContentRichText
+  sys: Sys!
+}
+
+type GenericContentCollection {
+  items: [GenericContent]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+type GenericContentCtasCollection {
+  items: [CallToAction]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+enum GenericContentCtasCollectionOrder {
+  entryTitle_ASC
+  entryTitle_DESC
+  label_ASC
+  label_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  target_ASC
+  target_DESC
+  url_ASC
+  url_DESC
+  variant_ASC
+  variant_DESC
+}
+
+input GenericContentFilter {
+  AND: [GenericContentFilter]
+  OR: [GenericContentFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  copy: String
+  copy_contains: String
+  copy_exists: Boolean
+  copy_in: [String]
+  copy_not: String
+  copy_not_contains: String
+  copy_not_in: [String]
+  ctas: cfCallToActionNestedFilter
+  ctasCollection_exists: Boolean
+  entryTitle: String
+  entryTitle_contains: String
+  entryTitle_exists: Boolean
+  entryTitle_in: [String]
+  entryTitle_not: String
+  entryTitle_not_contains: String
+  entryTitle_not_in: [String]
+  heading: String
+  headingSize: String
+  headingSize_contains: String
+  headingSize_exists: Boolean
+  headingSize_in: [String]
+  headingSize_not: String
+  headingSize_not_contains: String
+  headingSize_not_in: [String]
+  headingTag: String
+  headingTag_contains: String
+  headingTag_exists: Boolean
+  headingTag_in: [String]
+  headingTag_not: String
+  headingTag_not_contains: String
+  headingTag_not_in: [String]
+  heading_contains: String
+  heading_exists: Boolean
+  heading_in: [String]
+  heading_not: String
+  heading_not_contains: String
+  heading_not_in: [String]
+  mediaCollection_exists: Boolean
+  referencesCollection_exists: Boolean
+  renderAs: String
+  renderAs_contains: String
+  renderAs_exists: Boolean
+  renderAs_in: [String]
+  renderAs_not: String
+  renderAs_not_contains: String
+  renderAs_not_in: [String]
+  richText_contains: String
+  richText_exists: Boolean
+  richText_not_contains: String
+  sys: SysFilter
+}
+
+type GenericContentLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  pageBuilderCollection(limit: Int = 100, locale: String, order: [GenericContentLinkingCollectionsPageBuilderCollectionOrder], preview: Boolean, skip: Int = 0): PageBuilderCollection
+}
+
+enum GenericContentLinkingCollectionsPageBuilderCollectionOrder {
+  date_ASC
+  date_DESC
+  entryTitle_ASC
+  entryTitle_DESC
+  slug_ASC
+  slug_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
+}
+
+enum GenericContentOrder {
+  entryTitle_ASC
+  entryTitle_DESC
+  headingSize_ASC
+  headingSize_DESC
+  headingTag_ASC
+  headingTag_DESC
+  heading_ASC
+  heading_DESC
+  renderAs_ASC
+  renderAs_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+type GenericContentReferencesCollection {
+  items: [Entry]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+type GenericContentRichText {
+  json: JSON!
+  links: GenericContentRichTextLinks!
+}
+
+type GenericContentRichTextAssets {
+  block: [Asset]!
+  hyperlink: [Asset]!
+}
+
+type GenericContentRichTextEntries {
+  block: [Entry]!
+  hyperlink: [Entry]!
+  inline: [Entry]!
+}
+
+type GenericContentRichTextLinks {
+  assets: GenericContentRichTextAssets!
+  entries: GenericContentRichTextEntries!
+  resources: GenericContentRichTextResources!
+}
+
+type GenericContentRichTextResources {
+  block: [GenericContentRichTextResourcesBlock!]!
+  hyperlink: [GenericContentRichTextResourcesHyperlink!]!
+  inline: [GenericContentRichTextResourcesInline!]!
+}
+
+type GenericContentRichTextResourcesBlock implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type GenericContentRichTextResourcesHyperlink implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type GenericContentRichTextResourcesInline implements ResourceLink {
+  sys: ResourceSys!
+}
+
+"""
+[See type definition](https://app.contentful.com/spaces/2dcscgnzpk4t/content_types/globalSettings)
+"""
+type GlobalSettings implements Entry & _Node {
+  _id: ID!
+  contentfulMetadata: ContentfulMetadata!
+  entryTitle(locale: String): String
+  linkedFrom(allowedLocales: [String]): GlobalSettingsLinkingCollections
+  navigationCollection(limit: Int = 100, locale: String, order: [GlobalSettingsNavigationCollectionOrder], preview: Boolean, skip: Int = 0, where: PageBuilderFilter): GlobalSettingsNavigationCollection
+  sys: Sys!
+}
+
+type GlobalSettingsCollection {
+  items: [GlobalSettings]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+input GlobalSettingsFilter {
+  AND: [GlobalSettingsFilter]
+  OR: [GlobalSettingsFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  entryTitle: String
+  entryTitle_contains: String
+  entryTitle_exists: Boolean
+  entryTitle_in: [String]
+  entryTitle_not: String
+  entryTitle_not_contains: String
+  entryTitle_not_in: [String]
+  navigation: cfPageBuilderNestedFilter
+  navigationCollection_exists: Boolean
+  sys: SysFilter
+}
+
+type GlobalSettingsLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+}
+
+type GlobalSettingsNavigationCollection {
+  items: [PageBuilder]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+enum GlobalSettingsNavigationCollectionOrder {
+  date_ASC
+  date_DESC
+  entryTitle_ASC
+  entryTitle_DESC
+  slug_ASC
+  slug_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
+}
+
+enum GlobalSettingsOrder {
+  entryTitle_ASC
+  entryTitle_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+"""The 'HexColor' type represents color in `rgb:ffffff` string format."""
+scalar HexColor
+
+enum ImageFormat {
+  """AVIF image format."""
+  AVIF
+
+  """JPG image format."""
+  JPG
+
+  """
+  Progressive JPG format stores multiple passes of an image in progressively higher detail.
+          When a progressive image is loading, the viewer will first see a lower quality pixelated version which
+          will gradually improve in detail, until the image is fully downloaded. This is to display an image as
+          early as possible to make the layout look as designed.
+  """
+  JPG_PROGRESSIVE
+
+  """PNG image format"""
+  PNG
+
+  """
+  8-bit PNG images support up to 256 colors and weigh less than the standard 24-bit PNG equivalent.
+          The 8-bit PNG format is mostly used for simple images, such as icons or logos.
+  """
+  PNG8
+
+  """WebP image format."""
+  WEBP
+}
+
+enum ImageResizeFocus {
+  """Focus the resizing on the bottom."""
+  BOTTOM
+
+  """Focus the resizing on the bottom left."""
+  BOTTOM_LEFT
+
+  """Focus the resizing on the bottom right."""
+  BOTTOM_RIGHT
+
+  """Focus the resizing on the center."""
+  CENTER
+
+  """Focus the resizing on the largest face."""
+  FACE
+
+  """Focus the resizing on the area containing all the faces."""
+  FACES
+
+  """Focus the resizing on the left."""
+  LEFT
+
+  """Focus the resizing on the right."""
+  RIGHT
+
+  """Focus the resizing on the top."""
+  TOP
+
+  """Focus the resizing on the top left."""
+  TOP_LEFT
+
+  """Focus the resizing on the top right."""
+  TOP_RIGHT
+}
+
+enum ImageResizeStrategy {
+  """
+  Crops a part of the original image to fit into the specified dimensions.
+  """
+  CROP
+
+  """
+  Resizes the image to the specified dimensions, cropping the image if needed.
+  """
+  FILL
+
+  """Resizes the image to fit into the specified dimensions."""
+  FIT
+
+  """
+  Resizes the image to the specified dimensions, padding the image if needed.
+          Uses desired background color as padding color.
+  """
+  PAD
+
+  """
+  Resizes the image to the specified dimensions, changing the original aspect ratio if needed.
+  """
+  SCALE
+
+  """Creates a thumbnail from the image."""
+  THUMB
+}
+
+input ImageTransformOptions {
+  """
+  Desired background color, used with corner radius or `PAD` resize strategy.
+          Defaults to transparent (for `PNG`, `PNG8` and `WEBP`) or white (for `JPG` and `JPG_PROGRESSIVE`).
+  """
+  backgroundColor: HexColor
+
+  """
+  Desired corner radius in pixels.
+          Results in an image with rounded corners (pass `-1` for a full circle/ellipse).
+          Defaults to `0`. Uses desired background color as padding color,
+          unless the format is `JPG` or `JPG_PROGRESSIVE` and resize strategy is `PAD`, then defaults to white.
+  """
+  cornerRadius: Int
+
+  """Desired image format. Defaults to the original image format."""
+  format: ImageFormat
+
+  """Desired height in pixels. Defaults to the original image height."""
+  height: Dimension
+
+  """
+  Desired quality of the image in percents.
+          Used for `PNG8`, `JPG`, `JPG_PROGRESSIVE` and `WEBP` formats.
+  """
+  quality: Quality
+
+  """Desired resize focus area. Defaults to `CENTER`."""
+  resizeFocus: ImageResizeFocus
+
+  """Desired resize strategy. Defaults to `FIT`."""
+  resizeStrategy: ImageResizeStrategy
+
+  """Desired width in pixels. Defaults to the original image width."""
+  width: Dimension
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+"""
+[See type definition](https://app.contentful.com/spaces/2dcscgnzpk4t/content_types/labelAndDescription)
+"""
+type LabelAndDescription implements Entry & _Node {
+  _id: ID!
+  contentfulMetadata: ContentfulMetadata!
+  description(locale: String): String
+  entryTitle(locale: String): String
+  label(locale: String): String
+  linkedFrom(allowedLocales: [String]): LabelAndDescriptionLinkingCollections
+  sys: Sys!
+}
+
+type LabelAndDescriptionCollection {
+  items: [LabelAndDescription]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+input LabelAndDescriptionFilter {
+  AND: [LabelAndDescriptionFilter]
+  OR: [LabelAndDescriptionFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  description: String
+  description_contains: String
+  description_exists: Boolean
+  description_in: [String]
+  description_not: String
+  description_not_contains: String
+  description_not_in: [String]
+  entryTitle: String
+  entryTitle_contains: String
+  entryTitle_exists: Boolean
+  entryTitle_in: [String]
+  entryTitle_not: String
+  entryTitle_not_contains: String
+  entryTitle_not_in: [String]
+  label: String
+  label_contains: String
+  label_exists: Boolean
+  label_in: [String]
+  label_not: String
+  label_not_contains: String
+  label_not_in: [String]
+  sys: SysFilter
+}
+
+type LabelAndDescriptionLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+}
+
+enum LabelAndDescriptionOrder {
+  entryTitle_ASC
+  entryTitle_DESC
+  label_ASC
+  label_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+"""
+Used for general top-level pages. [See type definition](https://app.contentful.com/spaces/2dcscgnzpk4t/content_types/page)
+"""
+type Page implements Entry & _Node {
+  _id: ID!
+  content(locale: String): PageContent
+  contentfulMetadata: ContentfulMetadata!
+  linkedFrom(allowedLocales: [String]): PageLinkingCollections
+  slug(locale: String): String
+  sys: Sys!
+  title(locale: String): String
+}
+
+"""
+[See type definition](https://app.contentful.com/spaces/2dcscgnzpk4t/content_types/pageBuilder)
+"""
+type PageBuilder implements Entry & _Node {
+  _id: ID!
+  blocksCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, where: PageBuilderBlocksFilter): PageBuilderBlocksCollection
+  contentfulMetadata: ContentfulMetadata!
+  date(locale: String): DateTime
+  description(locale: String): String
+  entryTitle(locale: String): String
+  linkedFrom(allowedLocales: [String]): PageBuilderLinkingCollections
+  richText(locale: String): PageBuilderRichText
+  slug(locale: String): String
+  sys: Sys!
+  tags(locale: String): [String]
+  thumbnail(locale: String, preview: Boolean): Asset
+  title(locale: String): String
+}
+
+type PageBuilderBlocksCollection {
+  items: [PageBuilderBlocksItem]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+input PageBuilderBlocksFilter {
+  AND: [PageBuilderBlocksFilter]
+  OR: [PageBuilderBlocksFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  entryTitle: String
+  entryTitle_contains: String
+  entryTitle_exists: Boolean
+  entryTitle_in: [String]
+  entryTitle_not: String
+  entryTitle_not_contains: String
+  entryTitle_not_in: [String]
+  sys: SysFilter
+}
+
+union PageBuilderBlocksItem = GenericContent | Record
+
+type PageBuilderCollection {
+  items: [PageBuilder]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+input PageBuilderFilter {
+  AND: [PageBuilderFilter]
+  OR: [PageBuilderFilter]
+  blocks: cfblocksMultiTypeNestedFilter
+  blocksCollection_exists: Boolean
+  contentfulMetadata: ContentfulMetadataFilter
+  date: DateTime
+  date_exists: Boolean
+  date_gt: DateTime
+  date_gte: DateTime
+  date_in: [DateTime]
+  date_lt: DateTime
+  date_lte: DateTime
+  date_not: DateTime
+  date_not_in: [DateTime]
+  description: String
+  description_contains: String
+  description_exists: Boolean
+  description_in: [String]
+  description_not: String
+  description_not_contains: String
+  description_not_in: [String]
+  entryTitle: String
+  entryTitle_contains: String
+  entryTitle_exists: Boolean
+  entryTitle_in: [String]
+  entryTitle_not: String
+  entryTitle_not_contains: String
+  entryTitle_not_in: [String]
+  richText_contains: String
+  richText_exists: Boolean
+  richText_not_contains: String
+  slug: String
+  slug_contains: String
+  slug_exists: Boolean
+  slug_in: [String]
+  slug_not: String
+  slug_not_contains: String
+  slug_not_in: [String]
+  sys: SysFilter
+  tags_contains_all: [String]
+  tags_contains_none: [String]
+  tags_contains_some: [String]
+  tags_exists: Boolean
+  thumbnail_exists: Boolean
+  title: String
+  title_contains: String
+  title_exists: Boolean
+  title_in: [String]
+  title_not: String
+  title_not_contains: String
+  title_not_in: [String]
+}
+
+type PageBuilderLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  globalSettingsCollection(limit: Int = 100, locale: String, order: [PageBuilderLinkingCollectionsGlobalSettingsCollectionOrder], preview: Boolean, skip: Int = 0): GlobalSettingsCollection
+}
+
+enum PageBuilderLinkingCollectionsGlobalSettingsCollectionOrder {
+  entryTitle_ASC
+  entryTitle_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+enum PageBuilderOrder {
+  date_ASC
+  date_DESC
+  entryTitle_ASC
+  entryTitle_DESC
+  slug_ASC
+  slug_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
+}
+
+type PageBuilderRichText {
+  json: JSON!
+  links: PageBuilderRichTextLinks!
+}
+
+type PageBuilderRichTextAssets {
+  block: [Asset]!
+  hyperlink: [Asset]!
+}
+
+type PageBuilderRichTextEntries {
+  block: [Entry]!
+  hyperlink: [Entry]!
+  inline: [Entry]!
+}
+
+type PageBuilderRichTextLinks {
+  assets: PageBuilderRichTextAssets!
+  entries: PageBuilderRichTextEntries!
+  resources: PageBuilderRichTextResources!
+}
+
+type PageBuilderRichTextResources {
+  block: [PageBuilderRichTextResourcesBlock!]!
+  hyperlink: [PageBuilderRichTextResourcesHyperlink!]!
+  inline: [PageBuilderRichTextResourcesInline!]!
+}
+
+type PageBuilderRichTextResourcesBlock implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type PageBuilderRichTextResourcesHyperlink implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type PageBuilderRichTextResourcesInline implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type PageCollection {
+  items: [Page]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+type PageContent {
+  json: JSON!
+  links: PageContentLinks!
+}
+
+type PageContentAssets {
+  block: [Asset]!
+  hyperlink: [Asset]!
+}
+
+type PageContentEntries {
+  block: [Entry]!
+  hyperlink: [Entry]!
+  inline: [Entry]!
+}
+
+type PageContentLinks {
+  assets: PageContentAssets!
+  entries: PageContentEntries!
+  resources: PageContentResources!
+}
+
+type PageContentResources {
+  block: [PageContentResourcesBlock!]!
+  hyperlink: [PageContentResourcesHyperlink!]!
+  inline: [PageContentResourcesInline!]!
+}
+
+type PageContentResourcesBlock implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type PageContentResourcesHyperlink implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type PageContentResourcesInline implements ResourceLink {
+  sys: ResourceSys!
+}
+
+input PageFilter {
+  AND: [PageFilter]
+  OR: [PageFilter]
+  content_contains: String
+  content_exists: Boolean
+  content_not_contains: String
+  contentfulMetadata: ContentfulMetadataFilter
+  slug: String
+  slug_contains: String
+  slug_exists: Boolean
+  slug_in: [String]
+  slug_not: String
+  slug_not_contains: String
+  slug_not_in: [String]
+  sys: SysFilter
+  title: String
+  title_contains: String
+  title_exists: Boolean
+  title_in: [String]
+  title_not: String
+  title_not_contains: String
+  title_not_in: [String]
+}
+
+type PageLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+}
+
+enum PageOrder {
+  slug_ASC
+  slug_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
+}
+
+"""
+[See type definition](https://app.contentful.com/spaces/2dcscgnzpk4t/content_types/project)
+"""
+type Project implements Entry & _Node {
+  _id: ID!
+  contentfulMetadata: ContentfulMetadata!
+  description(locale: String): ProjectDescription
+  desktopScreenshot(locale: String, preview: Boolean): Asset
+  headline(locale: String): String
+  linkedFrom(allowedLocales: [String]): ProjectLinkingCollections
+  liveLink(locale: String): String
+  liveLinkText(locale: String): String
+  mobileScreenshot(locale: String, preview: Boolean): Asset
+  order(locale: String): Int
+  projectTitle(locale: String): String
+  slug(locale: String): String
+  sys: Sys!
+  technologies(locale: String): [String]
+}
+
+type ProjectCollection {
+  items: [Project]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+type ProjectDescription {
+  json: JSON!
+  links: ProjectDescriptionLinks!
+}
+
+type ProjectDescriptionAssets {
+  block: [Asset]!
+  hyperlink: [Asset]!
+}
+
+type ProjectDescriptionEntries {
+  block: [Entry]!
+  hyperlink: [Entry]!
+  inline: [Entry]!
+}
+
+type ProjectDescriptionLinks {
+  assets: ProjectDescriptionAssets!
+  entries: ProjectDescriptionEntries!
+  resources: ProjectDescriptionResources!
+}
+
+type ProjectDescriptionResources {
+  block: [ProjectDescriptionResourcesBlock!]!
+  hyperlink: [ProjectDescriptionResourcesHyperlink!]!
+  inline: [ProjectDescriptionResourcesInline!]!
+}
+
+type ProjectDescriptionResourcesBlock implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type ProjectDescriptionResourcesHyperlink implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type ProjectDescriptionResourcesInline implements ResourceLink {
+  sys: ResourceSys!
+}
+
+input ProjectFilter {
+  AND: [ProjectFilter]
+  OR: [ProjectFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  description_contains: String
+  description_exists: Boolean
+  description_not_contains: String
+  desktopScreenshot_exists: Boolean
+  headline: String
+  headline_contains: String
+  headline_exists: Boolean
+  headline_in: [String]
+  headline_not: String
+  headline_not_contains: String
+  headline_not_in: [String]
+  liveLink: String
+  liveLinkText: String
+  liveLinkText_contains: String
+  liveLinkText_exists: Boolean
+  liveLinkText_in: [String]
+  liveLinkText_not: String
+  liveLinkText_not_contains: String
+  liveLinkText_not_in: [String]
+  liveLink_contains: String
+  liveLink_exists: Boolean
+  liveLink_in: [String]
+  liveLink_not: String
+  liveLink_not_contains: String
+  liveLink_not_in: [String]
+  mobileScreenshot_exists: Boolean
+  order: Int
+  order_exists: Boolean
+  order_gt: Int
+  order_gte: Int
+  order_in: [Int]
+  order_lt: Int
+  order_lte: Int
+  order_not: Int
+  order_not_in: [Int]
+  projectTitle: String
+  projectTitle_contains: String
+  projectTitle_exists: Boolean
+  projectTitle_in: [String]
+  projectTitle_not: String
+  projectTitle_not_contains: String
+  projectTitle_not_in: [String]
+  slug: String
+  slug_contains: String
+  slug_exists: Boolean
+  slug_in: [String]
+  slug_not: String
+  slug_not_contains: String
+  slug_not_in: [String]
+  sys: SysFilter
+  technologies_contains_all: [String]
+  technologies_contains_none: [String]
+  technologies_contains_some: [String]
+  technologies_exists: Boolean
+}
+
+type ProjectLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+}
+
+enum ProjectOrder {
+  headline_ASC
+  headline_DESC
+  liveLinkText_ASC
+  liveLinkText_DESC
+  liveLink_ASC
+  liveLink_DESC
+  order_ASC
+  order_DESC
+  projectTitle_ASC
+  projectTitle_DESC
+  slug_ASC
+  slug_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+"""
+The 'Quality' type represents quality as whole numeric values between `1` and `100`.
+"""
+scalar Quality
+
+type Query {
+  _node(id: ID!, locale: String, preview: Boolean): _Node
+  _nodes(ids: [ID!]!, locale: String, preview: Boolean): [_Node]!
+  asset(id: String!, locale: String, preview: Boolean): Asset
+  assetCollection(limit: Int = 100, locale: String, order: [AssetOrder], preview: Boolean, skip: Int = 0, where: AssetFilter): AssetCollection
+  callToAction(id: String!, locale: String, preview: Boolean): CallToAction
+  callToActionCollection(limit: Int = 100, locale: String, order: [CallToActionOrder], preview: Boolean, skip: Int = 0, where: CallToActionFilter): CallToActionCollection
+  entryCollection(limit: Int = 100, locale: String, order: [EntryOrder], preview: Boolean, skip: Int = 0, where: EntryFilter): EntryCollection
+  genericContent(id: String!, locale: String, preview: Boolean): GenericContent
+  genericContentCollection(limit: Int = 100, locale: String, order: [GenericContentOrder], preview: Boolean, skip: Int = 0, where: GenericContentFilter): GenericContentCollection
+  globalSettings(id: String!, locale: String, preview: Boolean): GlobalSettings
+  globalSettingsCollection(limit: Int = 100, locale: String, order: [GlobalSettingsOrder], preview: Boolean, skip: Int = 0, where: GlobalSettingsFilter): GlobalSettingsCollection
+  labelAndDescription(id: String!, locale: String, preview: Boolean): LabelAndDescription
+  labelAndDescriptionCollection(limit: Int = 100, locale: String, order: [LabelAndDescriptionOrder], preview: Boolean, skip: Int = 0, where: LabelAndDescriptionFilter): LabelAndDescriptionCollection
+  page(id: String!, locale: String, preview: Boolean): Page
+  pageBuilder(id: String!, locale: String, preview: Boolean): PageBuilder
+  pageBuilderCollection(limit: Int = 100, locale: String, order: [PageBuilderOrder], preview: Boolean, skip: Int = 0, where: PageBuilderFilter): PageBuilderCollection
+  pageCollection(limit: Int = 100, locale: String, order: [PageOrder], preview: Boolean, skip: Int = 0, where: PageFilter): PageCollection
+  project(id: String!, locale: String, preview: Boolean): Project
+  projectCollection(limit: Int = 100, locale: String, order: [ProjectOrder], preview: Boolean, skip: Int = 0, where: ProjectFilter): ProjectCollection
+  record(id: String!, locale: String, preview: Boolean): Record
+  recordCollection(limit: Int = 100, locale: String, order: [RecordOrder], preview: Boolean, skip: Int = 0, where: RecordFilter): RecordCollection
+  recordField(id: String!, locale: String, preview: Boolean): RecordField
+  recordFieldCollection(limit: Int = 100, locale: String, order: [RecordFieldOrder], preview: Boolean, skip: Int = 0, where: RecordFieldFilter): RecordFieldCollection
+}
+
+"""
+[See type definition](https://app.contentful.com/spaces/2dcscgnzpk4t/content_types/record)
+"""
+type Record implements Entry & _Node {
+  _id: ID!
+  contentfulMetadata: ContentfulMetadata!
+  entryTitle(locale: String): String
+  fieldsCollection(limit: Int = 100, locale: String, order: [RecordFieldsCollectionOrder], preview: Boolean, skip: Int = 0, where: RecordFieldFilter): RecordFieldsCollection
+  linkedFrom(allowedLocales: [String]): RecordLinkingCollections
+  sys: Sys!
+}
+
+type RecordCollection {
+  items: [Record]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+"""
+[See type definition](https://app.contentful.com/spaces/2dcscgnzpk4t/content_types/recordField)
+"""
+type RecordField implements Entry & _Node {
+  _id: ID!
+  contentfulMetadata: ContentfulMetadata!
+  entryTitle(locale: String): String
+  label(locale: String): String
+  linkedFrom(allowedLocales: [String]): RecordFieldLinkingCollections
+  sys: Sys!
+  value(locale: String): String
+}
+
+type RecordFieldCollection {
+  items: [RecordField]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+input RecordFieldFilter {
+  AND: [RecordFieldFilter]
+  OR: [RecordFieldFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  entryTitle: String
+  entryTitle_contains: String
+  entryTitle_exists: Boolean
+  entryTitle_in: [String]
+  entryTitle_not: String
+  entryTitle_not_contains: String
+  entryTitle_not_in: [String]
+  label: String
+  label_contains: String
+  label_exists: Boolean
+  label_in: [String]
+  label_not: String
+  label_not_contains: String
+  label_not_in: [String]
+  sys: SysFilter
+  value: String
+  value_contains: String
+  value_exists: Boolean
+  value_in: [String]
+  value_not: String
+  value_not_contains: String
+  value_not_in: [String]
+}
+
+type RecordFieldLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  recordCollection(limit: Int = 100, locale: String, order: [RecordFieldLinkingCollectionsRecordCollectionOrder], preview: Boolean, skip: Int = 0): RecordCollection
+}
+
+enum RecordFieldLinkingCollectionsRecordCollectionOrder {
+  entryTitle_ASC
+  entryTitle_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+enum RecordFieldOrder {
+  entryTitle_ASC
+  entryTitle_DESC
+  label_ASC
+  label_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+type RecordFieldsCollection {
+  items: [RecordField]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+enum RecordFieldsCollectionOrder {
+  entryTitle_ASC
+  entryTitle_DESC
+  label_ASC
+  label_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+input RecordFilter {
+  AND: [RecordFilter]
+  OR: [RecordFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  entryTitle: String
+  entryTitle_contains: String
+  entryTitle_exists: Boolean
+  entryTitle_in: [String]
+  entryTitle_not: String
+  entryTitle_not_contains: String
+  entryTitle_not_in: [String]
+  fields: cfRecordFieldNestedFilter
+  fieldsCollection_exists: Boolean
+  sys: SysFilter
+}
+
+type RecordLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  pageBuilderCollection(limit: Int = 100, locale: String, order: [RecordLinkingCollectionsPageBuilderCollectionOrder], preview: Boolean, skip: Int = 0): PageBuilderCollection
+}
+
+enum RecordLinkingCollectionsPageBuilderCollectionOrder {
+  date_ASC
+  date_DESC
+  entryTitle_ASC
+  entryTitle_DESC
+  slug_ASC
+  slug_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
+}
+
+enum RecordOrder {
+  entryTitle_ASC
+  entryTitle_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+interface ResourceLink {
+  sys: ResourceSys!
+}
+
+type ResourceSys {
+  linkType: String!
+  urn: String!
+}
+
+type Sys {
+  environmentId: String!
+  firstPublishedAt: DateTime
+  id: String!
+
+  """The locale that was requested."""
+  locale: String
+  publishedAt: DateTime
+  publishedVersion: Int
+  spaceId: String!
+}
+
+input SysFilter {
+  firstPublishedAt: DateTime
+  firstPublishedAt_exists: Boolean
+  firstPublishedAt_gt: DateTime
+  firstPublishedAt_gte: DateTime
+  firstPublishedAt_in: [DateTime]
+  firstPublishedAt_lt: DateTime
+  firstPublishedAt_lte: DateTime
+  firstPublishedAt_not: DateTime
+  firstPublishedAt_not_in: [DateTime]
+  id: String
+  id_contains: String
+  id_exists: Boolean
+  id_in: [String]
+  id_not: String
+  id_not_contains: String
+  id_not_in: [String]
+  publishedAt: DateTime
+  publishedAt_exists: Boolean
+  publishedAt_gt: DateTime
+  publishedAt_gte: DateTime
+  publishedAt_in: [DateTime]
+  publishedAt_lt: DateTime
+  publishedAt_lte: DateTime
+  publishedAt_not: DateTime
+  publishedAt_not_in: [DateTime]
+  publishedVersion: Float
+  publishedVersion_exists: Boolean
+  publishedVersion_gt: Float
+  publishedVersion_gte: Float
+  publishedVersion_in: [Float]
+  publishedVersion_lt: Float
+  publishedVersion_lte: Float
+  publishedVersion_not: Float
+  publishedVersion_not_in: [Float]
+}
+
+"""
+Represents a taxonomy concept entity for finding and organizing content easily.
+        Find out more here: https://www.contentful.com/developers/docs/references/content-delivery-api/#/reference/content-concepts
+"""
+type TaxonomyConcept {
+  id: String
+}
+
+interface _Node {
+  _id: ID!
+}
+
+input cfCallToActionNestedFilter {
+  AND: [cfCallToActionNestedFilter]
+  OR: [cfCallToActionNestedFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  entryTitle: String
+  entryTitle_contains: String
+  entryTitle_exists: Boolean
+  entryTitle_in: [String]
+  entryTitle_not: String
+  entryTitle_not_contains: String
+  entryTitle_not_in: [String]
+  label: String
+  label_contains: String
+  label_exists: Boolean
+  label_in: [String]
+  label_not: String
+  label_not_contains: String
+  label_not_in: [String]
+  sys: SysFilter
+  target: String
+  target_contains: String
+  target_exists: Boolean
+  target_in: [String]
+  target_not: String
+  target_not_contains: String
+  target_not_in: [String]
+  url: String
+  url_contains: String
+  url_exists: Boolean
+  url_in: [String]
+  url_not: String
+  url_not_contains: String
+  url_not_in: [String]
+  variant: String
+  variant_contains: String
+  variant_exists: Boolean
+  variant_in: [String]
+  variant_not: String
+  variant_not_contains: String
+  variant_not_in: [String]
+}
+
+input cfPageBuilderNestedFilter {
+  AND: [cfPageBuilderNestedFilter]
+  OR: [cfPageBuilderNestedFilter]
+  blocksCollection_exists: Boolean
+  contentfulMetadata: ContentfulMetadataFilter
+  date: DateTime
+  date_exists: Boolean
+  date_gt: DateTime
+  date_gte: DateTime
+  date_in: [DateTime]
+  date_lt: DateTime
+  date_lte: DateTime
+  date_not: DateTime
+  date_not_in: [DateTime]
+  description: String
+  description_contains: String
+  description_exists: Boolean
+  description_in: [String]
+  description_not: String
+  description_not_contains: String
+  description_not_in: [String]
+  entryTitle: String
+  entryTitle_contains: String
+  entryTitle_exists: Boolean
+  entryTitle_in: [String]
+  entryTitle_not: String
+  entryTitle_not_contains: String
+  entryTitle_not_in: [String]
+  richText_contains: String
+  richText_exists: Boolean
+  richText_not_contains: String
+  slug: String
+  slug_contains: String
+  slug_exists: Boolean
+  slug_in: [String]
+  slug_not: String
+  slug_not_contains: String
+  slug_not_in: [String]
+  sys: SysFilter
+  tags_contains_all: [String]
+  tags_contains_none: [String]
+  tags_contains_some: [String]
+  tags_exists: Boolean
+  thumbnail_exists: Boolean
+  title: String
+  title_contains: String
+  title_exists: Boolean
+  title_in: [String]
+  title_not: String
+  title_not_contains: String
+  title_not_in: [String]
+}
+
+input cfRecordFieldNestedFilter {
+  AND: [cfRecordFieldNestedFilter]
+  OR: [cfRecordFieldNestedFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  entryTitle: String
+  entryTitle_contains: String
+  entryTitle_exists: Boolean
+  entryTitle_in: [String]
+  entryTitle_not: String
+  entryTitle_not_contains: String
+  entryTitle_not_in: [String]
+  label: String
+  label_contains: String
+  label_exists: Boolean
+  label_in: [String]
+  label_not: String
+  label_not_contains: String
+  label_not_in: [String]
+  sys: SysFilter
+  value: String
+  value_contains: String
+  value_exists: Boolean
+  value_in: [String]
+  value_not: String
+  value_not_contains: String
+  value_not_in: [String]
+}
+
+input cfblocksMultiTypeNestedFilter {
+  AND: [cfblocksMultiTypeNestedFilter]
+  OR: [cfblocksMultiTypeNestedFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  entryTitle: String
+  entryTitle_contains: String
+  entryTitle_exists: Boolean
+  entryTitle_in: [String]
+  entryTitle_not: String
+  entryTitle_not_contains: String
+  entryTitle_not_in: [String]
+  sys: SysFilter
+}

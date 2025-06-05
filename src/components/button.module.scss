@@ -1,0 +1,25 @@
+.wrap {
+  appearance: none;
+  background-color: transparent;
+  border: var(--border-width) solid var(--color-button-border);
+  border-radius: var(--border-radius);
+  box-shadow: var(--button-shadow-width) var(--button-shadow-width) 0
+    var(--color-button-shadow);
+  color: var(--color-button);
+  cursor: pointer;
+  display: inline-block;
+  font-family: var(--font-display);
+  margin-block-end: 4px;
+  padding-block: var(--space-2);
+  padding-inline: var(--space-8);
+  text-decoration: none;
+  transition:
+    box-shadow var(--default-transition),
+    color var(--default-transition);
+
+  &:hover {
+    --color-button: var(--color-button--hover);
+    --color-button-border: var(--color-button-border--hover);
+    --button-shadow-width: var(--button-shadow-width--hover);
+  }
+}

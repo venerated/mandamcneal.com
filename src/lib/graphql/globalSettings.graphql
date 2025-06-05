@@ -1,0 +1,13 @@
+query globalSettings($preview: Boolean) {
+  globalSettingsCollection(limit: 1, preview: $preview) {
+    items {
+      navigationCollection(limit: 10) {
+        items {
+          ... on PageBuilder {
+            ...NavItemFields
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,34 @@
+@use '@/styles/mixins' as mixins;
+
+.wrap {
+  font-family: var(--font-display);
+  line-height: 1.2;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.h1 {
+  font-size: 61px;
+}
+
+.h2 {
+  font-size: mixins.fluid-scale(42, 49);
+  line-height: mixins.fluid-scale(40, 49);
+}
+
+.h3 {
+  font-size: 39px;
+}
+
+.h4 {
+  font-size: mixins.fluid-scale(27, 31);
+  line-height: mixins.fluid-scale(22, 25);
+}
+
+.h5 {
+  font-size: 25px;
+}
+
+.h6 {
+  font-size: 20px;
+}

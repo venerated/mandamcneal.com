@@ -1,0 +1,21 @@
+.media {
+  align-items: end;
+  display: grid;
+  gap: var(--space-4);
+}
+
+.desktop {
+  grid-column: 1 / 11;
+}
+
+.desktopImage {
+  border: var(--default-border);
+}
+
+.mobile {
+  grid-column: 11 / 13;
+}
+
+.mobileImage {
+  border: var(--default-border);
+}

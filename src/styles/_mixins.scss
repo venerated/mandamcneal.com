@@ -1,0 +1,37 @@
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:math';
+@use 'sass:string';
+
+$mobile: 480px;
+$tablet: 768px;
+$desktop: 1024px;
+
+$breakpoints: (
+  mobile: $mobile,
+  tablet: $tablet,
+  desktop: $desktop,
+);
+
+@mixin media($label) {
+  $size: map.get($breakpoints, $label);
+  @if $size {
+    @media (min-width: $size) {
+      @content;
+    }
+  } @else {
+    @error "No value for `#{$label}` in $breakpoints.";
+  }
+}
+
+@function fluid-scale($min-px, $max-px, $min-vw: 375, $max-vw: 1920) {
+  $slope: math.div(($max-px - $min-px), ($max-vw - $min-vw)) * 100;
+  $intercept: $min-px - math.div($slope, 100) * $min-vw;
+
+  $min-value: min($min-px, $max-px);
+  $max-value: max($min-px, $max-px);
+
+  @return string.unquote(
+    'clamp(#{$min-value}px, calc(#{$slope}vw + #{$intercept}px), #{$max-value}px)'
+  );
+}

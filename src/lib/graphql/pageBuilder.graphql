@@ -1,0 +1,46 @@
+fragment PageBuilderFieldsBase on PageBuilder {
+  __typename
+  sys {
+    id
+  }
+  slug
+}
+
+fragment PageBuilderCollectionFields on PageBuilder {
+  ...PageBuilderFieldsBase
+  title
+  description
+  date
+  richText {
+    json
+  }
+  tags
+  thumbnail {
+    url
+    width
+    height
+  }
+}
+
+fragment PageBuilderFields on PageBuilder {
+  ...PageBuilderCollectionFields
+  blocksCollection(limit: 10) {
+    items {
+      __typename
+      ... on Record {
+        ...RecordFields
+      }
+      ... on GenericContent {
+        ...GenericContentFields
+      }
+    }
+  }
+}
+
+query pageBuilder($slug: String!, $preview: Boolean) {
+  pageBuilderCollection(limit: 1, where: { slug: $slug }, preview: $preview) {
+    items {
+      ...PageBuilderFields
+    }
+  }
+}

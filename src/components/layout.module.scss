@@ -1,0 +1,19 @@
+@use '@/styles/mixins' as mixins;
+
+.wrap {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 0 auto;
+  max-width: 1024px;
+  min-block-size: 100dvh;
+  padding: var(--space-4);
+
+  @supports not (height: 100dvh) {
+    min-block-size: 100vh;
+  }
+
+  @include mixins.media('desktop') {
+    padding: var(--space-8);
+  }
+}

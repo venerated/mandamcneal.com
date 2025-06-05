@@ -1,0 +1,51 @@
+@use '@/styles/mixins' as mixins;
+
+.wrap {
+  border: var(--default-border);
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: 1fr;
+  transition: border var(--default-transition);
+
+  @include mixins.media('desktop') {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.media {
+  height: 100%;
+  position: relative;
+}
+
+.image {
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  width: 100%;
+}
+
+.content {
+  padding-block: var(--space-6);
+  padding-inline: var(--space-4);
+}
+
+.date {
+  font-size: 12px;
+}
+
+.description {
+  margin-bottom: var(--space-2);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: var(--space-4);
+}
+
+.tag {
+  background-color: var(--color-foreground);
+  color: var(--color-background);
+  font-size: 12px;
+  padding-inline: var(--space-1);
+}

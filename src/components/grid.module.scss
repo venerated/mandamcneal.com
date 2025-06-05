@@ -1,0 +1,19 @@
+@use '@/styles/mixins' as mixins;
+
+.wrap {
+  --grid-columns: var(--grid-columns--mobile, 1);
+  display: grid;
+  gap: var(--grid-gap);
+  grid-template-columns: repeat(var(--grid-columns), 1fr);
+
+  @include mixins.media('tablet') {
+    --grid-columns: var(--grid-columns--tablet, var(--grid-columns--mobile, 1));
+  }
+
+  @include mixins.media('desktop') {
+    --grid-columns: var(
+      --grid-columns--desktop,
+      var(--grid-columns--tablet, var(--grid-columns--mobile, 1))
+    );
+  }
+}

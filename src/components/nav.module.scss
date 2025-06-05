@@ -1,0 +1,81 @@
+@use '@/styles/mixins' as mixins;
+
+.wrap {
+  border-top: var(--default-border);
+  transition: border var(--default-transition);
+
+  @include mixins.media('desktop') {
+    border-top: 0;
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  @include mixins.media('desktop') {
+    flex-direction: row;
+    height: 100%;
+  }
+}
+
+.listItem {
+  flex: 1 1 calc(100% / var(--nav-item-count));
+  transition: border var(--default-transition);
+
+  &:not(:last-child) {
+    border-bottom: var(--default-border);
+  }
+
+  @include mixins.media('desktop') {
+    border-left: var(--default-border);
+
+    &:not(:last-child) {
+      border-bottom: none;
+    }
+  }
+}
+
+.listLink {
+  align-items: center;
+  display: flex;
+  font-family: var(--font-display);
+  font-weight: 500;
+  height: 100%;
+  justify-content: center;
+  padding-block: var(--space-4);
+  padding-inline: var(--space-4);
+  position: relative;
+  text-decoration: none;
+
+  &:after {
+    @include mixins.media('desktop') {
+      background-color: transparent;
+      bottom: 0;
+      content: '';
+      height: 3px;
+      left: 0;
+      position: absolute;
+      transition: background-color var(--default-transition);
+      width: 100%;
+    }
+  }
+
+  &.listLinkActive,
+  &:hover {
+    background-color: var(--color-foreground);
+    color: var(--color-background);
+
+    @include mixins.media('desktop') {
+      background-color: transparent;
+      color: var(--color-foreground);
+
+      &:after {
+        background-color: var(--color-border);
+      }
+    }
+  }
+}
