@@ -1,0 +1,11 @@
+fragment CallToActionFields on CallToAction {
+  sys {
+    id
+  }
+  url
+  label
+  svgIcon
+  iconPosition
+  target
+  variant
+}

@@ -8,6 +8,13 @@ query globalSettings($preview: Boolean) {
           }
         }
       }
+      footerLinksCollection(limit: 10) {
+        items {
+          ... on CallToAction {
+            ...CallToActionFields
+          }
+        }
+      }
     }
   }
 }

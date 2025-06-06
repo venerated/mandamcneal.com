@@ -31,7 +31,9 @@ export async function generateMetadata({
     },
   }
 
-  if (page?.title) metadata.title = page.title
+  metadata.title = page?.title
+    ? `Amanda McNeal | ${page.title}`
+    : `Amanda McNeal`
   if (page?.description) metadata.description = page.description
 
   return metadata

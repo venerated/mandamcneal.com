@@ -128,8 +128,10 @@ type CallToAction implements Entry & _Node {
   _id: ID!
   contentfulMetadata: ContentfulMetadata!
   entryTitle(locale: String): String
+  iconPosition(locale: String): String
   label(locale: String): String
   linkedFrom(allowedLocales: [String]): CallToActionLinkingCollections
+  svgIcon(locale: String): String
   sys: Sys!
   target(locale: String): String
   url(locale: String): String
@@ -154,6 +156,13 @@ input CallToActionFilter {
   entryTitle_not: String
   entryTitle_not_contains: String
   entryTitle_not_in: [String]
+  iconPosition: String
+  iconPosition_contains: String
+  iconPosition_exists: Boolean
+  iconPosition_in: [String]
+  iconPosition_not: String
+  iconPosition_not_contains: String
+  iconPosition_not_in: [String]
   label: String
   label_contains: String
   label_exists: Boolean
@@ -161,6 +170,13 @@ input CallToActionFilter {
   label_not: String
   label_not_contains: String
   label_not_in: [String]
+  svgIcon: String
+  svgIcon_contains: String
+  svgIcon_exists: Boolean
+  svgIcon_in: [String]
+  svgIcon_not: String
+  svgIcon_not_contains: String
+  svgIcon_not_in: [String]
   sys: SysFilter
   target: String
   target_contains: String
@@ -188,9 +204,14 @@ input CallToActionFilter {
 type CallToActionLinkingCollections {
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
   genericContentCollection(limit: Int = 100, locale: String, order: [CallToActionLinkingCollectionsGenericContentCollectionOrder], preview: Boolean, skip: Int = 0): GenericContentCollection
+  globalSettingsCollection(limit: Int = 100, locale: String, order: [CallToActionLinkingCollectionsGlobalSettingsCollectionOrder], preview: Boolean, skip: Int = 0): GlobalSettingsCollection
 }
 
 enum CallToActionLinkingCollectionsGenericContentCollectionOrder {
+  autoReferenceLimit_ASC
+  autoReferenceLimit_DESC
+  autoReference_ASC
+  autoReference_DESC
   entryTitle_ASC
   entryTitle_DESC
   headingSize_ASC
@@ -211,9 +232,24 @@ enum CallToActionLinkingCollectionsGenericContentCollectionOrder {
   sys_publishedVersion_DESC
 }
 
+enum CallToActionLinkingCollectionsGlobalSettingsCollectionOrder {
+  entryTitle_ASC
+  entryTitle_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
 enum CallToActionOrder {
   entryTitle_ASC
   entryTitle_DESC
+  iconPosition_ASC
+  iconPosition_DESC
   label_ASC
   label_DESC
   sys_firstPublishedAt_ASC
@@ -320,6 +356,8 @@ enum EntryOrder {
 """
 type GenericContent implements Entry & _Node {
   _id: ID!
+  autoReference(locale: String): String
+  autoReferenceLimit(locale: String): Int
   contentfulMetadata: ContentfulMetadata!
   copy(locale: String): String
   ctasCollection(limit: Int = 100, locale: String, order: [GenericContentCtasCollectionOrder], preview: Boolean, skip: Int = 0, where: CallToActionFilter): GenericContentCtasCollection
@@ -352,6 +390,8 @@ type GenericContentCtasCollection {
 enum GenericContentCtasCollectionOrder {
   entryTitle_ASC
   entryTitle_DESC
+  iconPosition_ASC
+  iconPosition_DESC
   label_ASC
   label_DESC
   sys_firstPublishedAt_ASC
@@ -373,6 +413,22 @@ enum GenericContentCtasCollectionOrder {
 input GenericContentFilter {
   AND: [GenericContentFilter]
   OR: [GenericContentFilter]
+  autoReference: String
+  autoReferenceLimit: Int
+  autoReferenceLimit_exists: Boolean
+  autoReferenceLimit_gt: Int
+  autoReferenceLimit_gte: Int
+  autoReferenceLimit_in: [Int]
+  autoReferenceLimit_lt: Int
+  autoReferenceLimit_lte: Int
+  autoReferenceLimit_not: Int
+  autoReferenceLimit_not_in: [Int]
+  autoReference_contains: String
+  autoReference_exists: Boolean
+  autoReference_in: [String]
+  autoReference_not: String
+  autoReference_not_contains: String
+  autoReference_not_in: [String]
   contentfulMetadata: ContentfulMetadataFilter
   copy: String
   copy_contains: String
@@ -451,6 +507,10 @@ enum GenericContentLinkingCollectionsPageBuilderCollectionOrder {
 }
 
 enum GenericContentOrder {
+  autoReferenceLimit_ASC
+  autoReferenceLimit_DESC
+  autoReference_ASC
+  autoReference_DESC
   entryTitle_ASC
   entryTitle_DESC
   headingSize_ASC
@@ -525,6 +585,7 @@ type GlobalSettings implements Entry & _Node {
   _id: ID!
   contentfulMetadata: ContentfulMetadata!
   entryTitle(locale: String): String
+  footerLinksCollection(limit: Int = 100, locale: String, order: [GlobalSettingsFooterLinksCollectionOrder], preview: Boolean, skip: Int = 0, where: CallToActionFilter): GlobalSettingsFooterLinksCollection
   linkedFrom(allowedLocales: [String]): GlobalSettingsLinkingCollections
   navigationCollection(limit: Int = 100, locale: String, order: [GlobalSettingsNavigationCollectionOrder], preview: Boolean, skip: Int = 0, where: PageBuilderFilter): GlobalSettingsNavigationCollection
   sys: Sys!
@@ -548,9 +609,41 @@ input GlobalSettingsFilter {
   entryTitle_not: String
   entryTitle_not_contains: String
   entryTitle_not_in: [String]
+  footerLinks: cfCallToActionNestedFilter
+  footerLinksCollection_exists: Boolean
   navigation: cfPageBuilderNestedFilter
   navigationCollection_exists: Boolean
   sys: SysFilter
+}
+
+type GlobalSettingsFooterLinksCollection {
+  items: [CallToAction]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+enum GlobalSettingsFooterLinksCollectionOrder {
+  entryTitle_ASC
+  entryTitle_DESC
+  iconPosition_ASC
+  iconPosition_DESC
+  label_ASC
+  label_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  target_ASC
+  target_DESC
+  url_ASC
+  url_DESC
+  variant_ASC
+  variant_DESC
 }
 
 type GlobalSettingsLinkingCollections {
@@ -1524,6 +1617,13 @@ input cfCallToActionNestedFilter {
   entryTitle_not: String
   entryTitle_not_contains: String
   entryTitle_not_in: [String]
+  iconPosition: String
+  iconPosition_contains: String
+  iconPosition_exists: Boolean
+  iconPosition_in: [String]
+  iconPosition_not: String
+  iconPosition_not_contains: String
+  iconPosition_not_in: [String]
   label: String
   label_contains: String
   label_exists: Boolean
@@ -1531,6 +1631,13 @@ input cfCallToActionNestedFilter {
   label_not: String
   label_not_contains: String
   label_not_in: [String]
+  svgIcon: String
+  svgIcon_contains: String
+  svgIcon_exists: Boolean
+  svgIcon_in: [String]
+  svgIcon_not: String
+  svgIcon_not_contains: String
+  svgIcon_not_in: [String]
   sys: SysFilter
   target: String
   target_contains: String

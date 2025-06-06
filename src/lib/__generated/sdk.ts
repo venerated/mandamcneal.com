@@ -239,8 +239,10 @@ export type ContentfulCallToAction = ContentfulEntry & Contentful_Node & {
   _id: Scalars['ID']['output'];
   contentfulMetadata: ContentfulContentfulMetadata;
   entryTitle?: Maybe<Scalars['String']['output']>;
+  iconPosition?: Maybe<Scalars['String']['output']>;
   label?: Maybe<Scalars['String']['output']>;
   linkedFrom?: Maybe<ContentfulCallToActionLinkingCollections>;
+  svgIcon?: Maybe<Scalars['String']['output']>;
   sys: ContentfulSys;
   target?: Maybe<Scalars['String']['output']>;
   url?: Maybe<Scalars['String']['output']>;
@@ -255,6 +257,12 @@ export type ContentfulCallToActionEntryTitleArgs = {
 
 
 /** [See type definition](https://app.contentful.com/spaces/2dcscgnzpk4t/content_types/callToAction) */
+export type ContentfulCallToActionIconPositionArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/2dcscgnzpk4t/content_types/callToAction) */
 export type ContentfulCallToActionLabelArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
 };
@@ -263,6 +271,12 @@ export type ContentfulCallToActionLabelArgs = {
 /** [See type definition](https://app.contentful.com/spaces/2dcscgnzpk4t/content_types/callToAction) */
 export type ContentfulCallToActionLinkedFromArgs = {
   allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/2dcscgnzpk4t/content_types/callToAction) */
+export type ContentfulCallToActionSvgIconArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
 };
 
 
@@ -302,6 +316,13 @@ export type ContentfulCallToActionFilter = {
   entryTitle_not?: InputMaybe<Scalars['String']['input']>;
   entryTitle_not_contains?: InputMaybe<Scalars['String']['input']>;
   entryTitle_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  iconPosition?: InputMaybe<Scalars['String']['input']>;
+  iconPosition_contains?: InputMaybe<Scalars['String']['input']>;
+  iconPosition_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  iconPosition_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  iconPosition_not?: InputMaybe<Scalars['String']['input']>;
+  iconPosition_not_contains?: InputMaybe<Scalars['String']['input']>;
+  iconPosition_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   label?: InputMaybe<Scalars['String']['input']>;
   label_contains?: InputMaybe<Scalars['String']['input']>;
   label_exists?: InputMaybe<Scalars['Boolean']['input']>;
@@ -309,6 +330,13 @@ export type ContentfulCallToActionFilter = {
   label_not?: InputMaybe<Scalars['String']['input']>;
   label_not_contains?: InputMaybe<Scalars['String']['input']>;
   label_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  svgIcon?: InputMaybe<Scalars['String']['input']>;
+  svgIcon_contains?: InputMaybe<Scalars['String']['input']>;
+  svgIcon_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  svgIcon_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  svgIcon_not?: InputMaybe<Scalars['String']['input']>;
+  svgIcon_not_contains?: InputMaybe<Scalars['String']['input']>;
+  svgIcon_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   sys?: InputMaybe<ContentfulSysFilter>;
   target?: InputMaybe<Scalars['String']['input']>;
   target_contains?: InputMaybe<Scalars['String']['input']>;
@@ -337,6 +365,7 @@ export type ContentfulCallToActionLinkingCollections = {
   __typename?: 'CallToActionLinkingCollections';
   entryCollection?: Maybe<ContentfulEntryCollection>;
   genericContentCollection?: Maybe<ContentfulGenericContentCollection>;
+  globalSettingsCollection?: Maybe<ContentfulGlobalSettingsCollection>;
 };
 
 
@@ -356,7 +385,20 @@ export type ContentfulCallToActionLinkingCollectionsGenericContentCollectionArgs
   skip?: InputMaybe<Scalars['Int']['input']>;
 };
 
+
+export type ContentfulCallToActionLinkingCollectionsGlobalSettingsCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<ContentfulCallToActionLinkingCollectionsGlobalSettingsCollectionOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+};
+
 export enum ContentfulCallToActionLinkingCollectionsGenericContentCollectionOrder {
+  AutoReferenceLimitAsc = 'autoReferenceLimit_ASC',
+  AutoReferenceLimitDesc = 'autoReferenceLimit_DESC',
+  AutoReferenceAsc = 'autoReference_ASC',
+  AutoReferenceDesc = 'autoReference_DESC',
   EntryTitleAsc = 'entryTitle_ASC',
   EntryTitleDesc = 'entryTitle_DESC',
   HeadingSizeAsc = 'headingSize_ASC',
@@ -377,9 +419,24 @@ export enum ContentfulCallToActionLinkingCollectionsGenericContentCollectionOrde
   SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
 }
 
+export enum ContentfulCallToActionLinkingCollectionsGlobalSettingsCollectionOrder {
+  EntryTitleAsc = 'entryTitle_ASC',
+  EntryTitleDesc = 'entryTitle_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
+
 export enum ContentfulCallToActionOrder {
   EntryTitleAsc = 'entryTitle_ASC',
   EntryTitleDesc = 'entryTitle_DESC',
+  IconPositionAsc = 'iconPosition_ASC',
+  IconPositionDesc = 'iconPosition_DESC',
   LabelAsc = 'label_ASC',
   LabelDesc = 'label_DESC',
   SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
@@ -475,6 +532,8 @@ export enum ContentfulEntryOrder {
 export type ContentfulGenericContent = ContentfulEntry & Contentful_Node & {
   __typename?: 'GenericContent';
   _id: Scalars['ID']['output'];
+  autoReference?: Maybe<Scalars['String']['output']>;
+  autoReferenceLimit?: Maybe<Scalars['Int']['output']>;
   contentfulMetadata: ContentfulContentfulMetadata;
   copy?: Maybe<Scalars['String']['output']>;
   ctasCollection?: Maybe<ContentfulGenericContentCtasCollection>;
@@ -488,6 +547,18 @@ export type ContentfulGenericContent = ContentfulEntry & Contentful_Node & {
   renderAs?: Maybe<Scalars['String']['output']>;
   richText?: Maybe<ContentfulGenericContentRichText>;
   sys: ContentfulSys;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/2dcscgnzpk4t/content_types/genericContent) */
+export type ContentfulGenericContentAutoReferenceArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/2dcscgnzpk4t/content_types/genericContent) */
+export type ContentfulGenericContentAutoReferenceLimitArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
 };
 
 
@@ -586,6 +657,8 @@ export type ContentfulGenericContentCtasCollection = {
 export enum ContentfulGenericContentCtasCollectionOrder {
   EntryTitleAsc = 'entryTitle_ASC',
   EntryTitleDesc = 'entryTitle_DESC',
+  IconPositionAsc = 'iconPosition_ASC',
+  IconPositionDesc = 'iconPosition_DESC',
   LabelAsc = 'label_ASC',
   LabelDesc = 'label_DESC',
   SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
@@ -607,6 +680,22 @@ export enum ContentfulGenericContentCtasCollectionOrder {
 export type ContentfulGenericContentFilter = {
   AND?: InputMaybe<Array<InputMaybe<ContentfulGenericContentFilter>>>;
   OR?: InputMaybe<Array<InputMaybe<ContentfulGenericContentFilter>>>;
+  autoReference?: InputMaybe<Scalars['String']['input']>;
+  autoReferenceLimit?: InputMaybe<Scalars['Int']['input']>;
+  autoReferenceLimit_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  autoReferenceLimit_gt?: InputMaybe<Scalars['Int']['input']>;
+  autoReferenceLimit_gte?: InputMaybe<Scalars['Int']['input']>;
+  autoReferenceLimit_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  autoReferenceLimit_lt?: InputMaybe<Scalars['Int']['input']>;
+  autoReferenceLimit_lte?: InputMaybe<Scalars['Int']['input']>;
+  autoReferenceLimit_not?: InputMaybe<Scalars['Int']['input']>;
+  autoReferenceLimit_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  autoReference_contains?: InputMaybe<Scalars['String']['input']>;
+  autoReference_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  autoReference_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  autoReference_not?: InputMaybe<Scalars['String']['input']>;
+  autoReference_not_contains?: InputMaybe<Scalars['String']['input']>;
+  autoReference_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   contentfulMetadata?: InputMaybe<ContentfulContentfulMetadataFilter>;
   copy?: InputMaybe<Scalars['String']['input']>;
   copy_contains?: InputMaybe<Scalars['String']['input']>;
@@ -703,6 +792,10 @@ export enum ContentfulGenericContentLinkingCollectionsPageBuilderCollectionOrder
 }
 
 export enum ContentfulGenericContentOrder {
+  AutoReferenceLimitAsc = 'autoReferenceLimit_ASC',
+  AutoReferenceLimitDesc = 'autoReferenceLimit_DESC',
+  AutoReferenceAsc = 'autoReference_ASC',
+  AutoReferenceDesc = 'autoReference_DESC',
   EntryTitleAsc = 'entryTitle_ASC',
   EntryTitleDesc = 'entryTitle_DESC',
   HeadingSizeAsc = 'headingSize_ASC',
@@ -785,6 +878,7 @@ export type ContentfulGlobalSettings = ContentfulEntry & Contentful_Node & {
   _id: Scalars['ID']['output'];
   contentfulMetadata: ContentfulContentfulMetadata;
   entryTitle?: Maybe<Scalars['String']['output']>;
+  footerLinksCollection?: Maybe<ContentfulGlobalSettingsFooterLinksCollection>;
   linkedFrom?: Maybe<ContentfulGlobalSettingsLinkingCollections>;
   navigationCollection?: Maybe<ContentfulGlobalSettingsNavigationCollection>;
   sys: ContentfulSys;
@@ -794,6 +888,17 @@ export type ContentfulGlobalSettings = ContentfulEntry & Contentful_Node & {
 /** [See type definition](https://app.contentful.com/spaces/2dcscgnzpk4t/content_types/globalSettings) */
 export type ContentfulGlobalSettingsEntryTitleArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/2dcscgnzpk4t/content_types/globalSettings) */
+export type ContentfulGlobalSettingsFooterLinksCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<ContentfulGlobalSettingsFooterLinksCollectionOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<ContentfulCallToActionFilter>;
 };
 
 
@@ -832,10 +937,43 @@ export type ContentfulGlobalSettingsFilter = {
   entryTitle_not?: InputMaybe<Scalars['String']['input']>;
   entryTitle_not_contains?: InputMaybe<Scalars['String']['input']>;
   entryTitle_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  footerLinks?: InputMaybe<ContentfulCfCallToActionNestedFilter>;
+  footerLinksCollection_exists?: InputMaybe<Scalars['Boolean']['input']>;
   navigation?: InputMaybe<ContentfulCfPageBuilderNestedFilter>;
   navigationCollection_exists?: InputMaybe<Scalars['Boolean']['input']>;
   sys?: InputMaybe<ContentfulSysFilter>;
 };
+
+export type ContentfulGlobalSettingsFooterLinksCollection = {
+  __typename?: 'GlobalSettingsFooterLinksCollection';
+  items: Array<Maybe<ContentfulCallToAction>>;
+  limit: Scalars['Int']['output'];
+  skip: Scalars['Int']['output'];
+  total: Scalars['Int']['output'];
+};
+
+export enum ContentfulGlobalSettingsFooterLinksCollectionOrder {
+  EntryTitleAsc = 'entryTitle_ASC',
+  EntryTitleDesc = 'entryTitle_DESC',
+  IconPositionAsc = 'iconPosition_ASC',
+  IconPositionDesc = 'iconPosition_DESC',
+  LabelAsc = 'label_ASC',
+  LabelDesc = 'label_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  TargetAsc = 'target_ASC',
+  TargetDesc = 'target_DESC',
+  UrlAsc = 'url_ASC',
+  UrlDesc = 'url_DESC',
+  VariantAsc = 'variant_ASC',
+  VariantDesc = 'variant_DESC'
+}
 
 export type ContentfulGlobalSettingsLinkingCollections = {
   __typename?: 'GlobalSettingsLinkingCollections';
@@ -2304,6 +2442,13 @@ export type ContentfulCfCallToActionNestedFilter = {
   entryTitle_not?: InputMaybe<Scalars['String']['input']>;
   entryTitle_not_contains?: InputMaybe<Scalars['String']['input']>;
   entryTitle_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  iconPosition?: InputMaybe<Scalars['String']['input']>;
+  iconPosition_contains?: InputMaybe<Scalars['String']['input']>;
+  iconPosition_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  iconPosition_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  iconPosition_not?: InputMaybe<Scalars['String']['input']>;
+  iconPosition_not_contains?: InputMaybe<Scalars['String']['input']>;
+  iconPosition_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   label?: InputMaybe<Scalars['String']['input']>;
   label_contains?: InputMaybe<Scalars['String']['input']>;
   label_exists?: InputMaybe<Scalars['Boolean']['input']>;
@@ -2311,6 +2456,13 @@ export type ContentfulCfCallToActionNestedFilter = {
   label_not?: InputMaybe<Scalars['String']['input']>;
   label_not_contains?: InputMaybe<Scalars['String']['input']>;
   label_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  svgIcon?: InputMaybe<Scalars['String']['input']>;
+  svgIcon_contains?: InputMaybe<Scalars['String']['input']>;
+  svgIcon_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  svgIcon_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  svgIcon_not?: InputMaybe<Scalars['String']['input']>;
+  svgIcon_not_contains?: InputMaybe<Scalars['String']['input']>;
+  svgIcon_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   sys?: InputMaybe<ContentfulSysFilter>;
   target?: InputMaybe<Scalars['String']['input']>;
   target_contains?: InputMaybe<Scalars['String']['input']>;
@@ -2434,6 +2586,8 @@ export type ContentfulGenericContentPropsFragment = { __typename?: 'GenericConte
 
 export type ContentfulRecordPropsFragment = { __typename?: 'Record', sys: { __typename?: 'Sys', id: string }, fieldsCollection?: { __typename?: 'RecordFieldsCollection', items: Array<{ __typename?: 'RecordField', label?: string | null, value?: string | null, sys: { __typename?: 'Sys', id: string } } | null> } | null };
 
+export type ContentfulCallToActionFieldsFragment = { __typename?: 'CallToAction', url?: string | null, label?: string | null, svgIcon?: string | null, iconPosition?: string | null, target?: string | null, variant?: string | null, sys: { __typename?: 'Sys', id: string } };
+
 export type ContentfulGenericContentFieldsFragment = { __typename?: 'GenericContent', renderAs?: string | null, heading?: string | null, headingSize?: string | null, headingTag?: string | null, copy?: string | null, sys: { __typename?: 'Sys', id: string }, richText?: { __typename?: 'GenericContentRichText', json: any } | null, mediaCollection?: { __typename?: 'AssetCollection', items: Array<{ __typename?: 'Asset', url?: string | null, width?: number | null, height?: number | null } | null> } | null, ctasCollection?: { __typename?: 'GenericContentCtasCollection', items: Array<{ __typename?: 'CallToAction', label?: string | null, variant?: string | null, url?: string | null, target?: string | null, sys: { __typename?: 'Sys', id: string } } | null> } | null, referencesCollection?: { __typename?: 'GenericContentReferencesCollection', items: Array<{ __typename: 'CallToAction' } | { __typename: 'GenericContent' } | { __typename: 'GlobalSettings' } | { __typename: 'LabelAndDescription' } | { __typename: 'Page' } | { __typename: 'PageBuilder', slug?: string | null, title?: string | null, description?: string | null, sys: { __typename?: 'Sys', id: string }, thumbnail?: { __typename?: 'Asset', url?: string | null, width?: number | null, height?: number | null } | null } | { __typename: 'Project' } | { __typename: 'Record' } | { __typename: 'RecordField' } | null> } | null };
 
 export type ContentfulGlobalSettingsQueryVariables = Exact<{
@@ -2444,6 +2598,9 @@ export type ContentfulGlobalSettingsQueryVariables = Exact<{
 export type ContentfulGlobalSettingsQuery = { __typename?: 'Query', globalSettingsCollection?: { __typename?: 'GlobalSettingsCollection', items: Array<{ __typename?: 'GlobalSettings', navigationCollection?: { __typename?: 'GlobalSettingsNavigationCollection', items: Array<(
           { __typename?: 'PageBuilder' }
           & ContentfulNavItemFieldsFragment
+        ) | null> } | null, footerLinksCollection?: { __typename?: 'GlobalSettingsFooterLinksCollection', items: Array<(
+          { __typename?: 'CallToAction' }
+          & ContentfulCallToActionFieldsFragment
         ) | null> } | null } | null> } | null };
 
 export type ContentfulNavItemFieldsFragment = { __typename?: 'PageBuilder', title?: string | null, slug?: string | null, sys: { __typename?: 'Sys', id: string } };
@@ -2576,6 +2733,19 @@ export const RecordPropsFragmentDoc = gql`
   }
 }
     `;
+export const CallToActionFieldsFragmentDoc = gql`
+    fragment CallToActionFields on CallToAction {
+  sys {
+    id
+  }
+  url
+  label
+  svgIcon
+  iconPosition
+  target
+  variant
+}
+    `;
 export const NavItemFieldsFragmentDoc = gql`
     fragment NavItemFields on PageBuilder {
   sys {
@@ -2706,10 +2876,18 @@ export const GlobalSettingsDocument = gql`
           }
         }
       }
+      footerLinksCollection(limit: 10) {
+        items {
+          ... on CallToAction {
+            ...CallToActionFields
+          }
+        }
+      }
     }
   }
 }
-    ${NavItemFieldsFragmentDoc}`;
+    ${NavItemFieldsFragmentDoc}
+${CallToActionFieldsFragmentDoc}`;
 export const PageBuilderDocument = gql`
     query pageBuilder($slug: String!, $preview: Boolean) {
   pageBuilderCollection(limit: 1, where: {slug: $slug}, preview: $preview) {

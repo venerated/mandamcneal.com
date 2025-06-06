@@ -1,3 +1,5 @@
+@use '@/styles/mixins' as mixins;
+
 .wrap {
   appearance: none;
   background-color: transparent;
@@ -5,5 +7,9 @@
   color: inherit;
   cursor: pointer;
   height: 100%;
-  width: 60px;
+  width: 100%;
+
+  @include mixins.media('desktop') {
+    width: 60px;
+  }
 }
