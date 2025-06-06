@@ -43,12 +43,13 @@ export default function Footer({
             return (
               <React.Fragment key={link?.sys.id}>
                 {link?.url ? (
-                  <Link className={styles.link} href={link.url}>
-                    {link.svgIcon ? (
-                      <span dangerouslySetInnerHTML={{ __html: sanitized }} />
-                    ) : (
-                      link?.label
-                    )}
+                  <Link
+                    className={styles.link}
+                    href={link.url}
+                    aria-label={link.label ?? undefined}
+                    dangerouslySetInnerHTML={{ __html: sanitized }}
+                  >
+                    {!link.svgIcon ? link?.label : null}
                   </Link>
                 ) : null}
               </React.Fragment>

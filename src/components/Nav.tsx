@@ -39,9 +39,7 @@ export default function Nav({
           )
         })}
         <li className={styles.listItem}>
-          <div className={styles.listLink}>
-            <ThemeSwitcher />
-          </div>
+          <ThemeSwitcher />
         </li>
       </ul>
     </nav>

@@ -37,7 +37,7 @@ export default function Header({
         className={styles.mobileMenuTrigger}
         onClick={() => setNavOpen(!navOpen)}
       >
-        <button className={styles.hamburger}>
+        <button className={styles.hamburger} aria-label="Toggle Menu">
           <span></span>
           <span></span>
           <span></span>

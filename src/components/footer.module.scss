@@ -21,7 +21,9 @@
 }
 
 .link {
+  display: grid;
   height: 40px;
+  place-content: center;
   width: 40px;
 
   @include mixins.media('desktop') {
