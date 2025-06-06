@@ -36,7 +36,11 @@ export default function ThemeSwitcher() {
   }
 
   return (
-    <button className={styles.wrap} onClick={toggleTheme}>
+    <button
+      className={styles.wrap}
+      onClick={toggleTheme}
+      aria-label="Switch Theme"
+    >
       {theme === 'dark' ? (
         <svg
           xmlns="http://www.w3.org/2000/svg"

@@ -26,9 +26,8 @@ export async function generateMetadata({
   const page = pageBuilderCollection?.items[0]
 
   const metadata: Metadata = {
-    alternates: {
-      canonical: slugAsString,
-    },
+    metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL!),
+    alternates: { canonical: slugAsString },
   }
 
   metadata.title = page?.title
