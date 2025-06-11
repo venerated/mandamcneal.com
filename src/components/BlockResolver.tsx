@@ -1,39 +1,44 @@
+import React from 'react'
+import { isValidElementType } from 'react-is'
+
+import BlogListing from '@/components/GenericContent/BlogListing'
+import Cards from '@/components/GenericContent/Cards'
+import Default from '@/components/GenericContent/Default'
+import Listing from '@/components/GenericContent/Listing'
+import Record from '@/components/Record'
+import WorkShowcase from '@/components/GenericContent/WorkShowcase'
+
 import type {
   ContentfulGenericContentPropsFragment,
   ContentfulRecordPropsFragment,
   ContentfulRecordFieldsFragment,
   ContentfulGenericContentFieldsFragment,
 } from '@/lib/__generated/sdk'
-import React, { lazy, LazyExoticComponent } from 'react'
 
-type RenderAs = 'BlogListing' | 'Cards' | 'Default' | 'Listing' | 'WorkShowcase'
+const componentMap = {
+  BlogListing,
+  Cards,
+  Default,
+  Listing,
+  WorkShowcase,
+} as const
 
-type ComponentId = 'GenericContent' | 'Record'
+type RenderAs = keyof typeof componentMap
 
-type LazyComponent = LazyExoticComponent<
-  ({
-    data,
-  }: {
-    data: ContentfulGenericContentPropsFragment
-  }) => React.JSX.Element
->
+type DynamicComponent = ({
+  data,
+}: {
+  data: ContentfulGenericContentPropsFragment
+}) => React.JSX.Element
 
-type LazyAsyncComponent = LazyExoticComponent<
-  ({
-    data,
-  }: {
-    data: ContentfulGenericContentPropsFragment
-  }) => Promise<React.JSX.Element>
->
+type AsyncDynamicComponent = ({
+  data,
+}: {
+  data: ContentfulGenericContentPropsFragment
+}) => Promise<React.JSX.Element>
 
-const Record = lazy(() => import('@/components/Record'))
-
-const componentMap: Record<string, LazyComponent | LazyAsyncComponent> = {
-  BlogListing: lazy(() => import('@/components/GenericContent/BlogListing')),
-  Cards: lazy(() => import('@/components/GenericContent/Cards')),
-  Default: lazy(() => import('@/components/GenericContent/Default')),
-  Listing: lazy(() => import('@/components/GenericContent/Listing')),
-  WorkShowcase: lazy(() => import('@/components/GenericContent/WorkShowcase')),
+function assertNever(x: never): never {
+  throw new Error(`Unhandled content type: ${x}`)
 }
 
 export default function BlockResolver({
@@ -51,30 +56,38 @@ export default function BlockResolver({
 }) {
   return data?.map((block) => {
     const contentType = block?.__typename
-    if (!contentType) return <div key={block?.sys.id}>Missing contentType</div>
+    if (!contentType) return <div key={block?.sys?.id}>Missing contentType</div>
 
-    const componentId: ComponentId = contentType
-    let component: LazyComponent | LazyAsyncComponent | null = null
+    const componentContentType = contentType
+    let component: DynamicComponent | AsyncDynamicComponent | null = null
     if (contentType === 'GenericContent') {
       const renderAs = (block?.renderAs ?? 'Default') as RenderAs
       component = componentMap[renderAs]
+      if (!isValidElementType(component)) {
+        if (process.env.NODE_ENV === 'development') {
+          throw new Error(`Invalid component for renderAs "${renderAs}"`)
+        }
+        return null
+      }
     }
 
-    switch (componentId) {
+    switch (componentContentType) {
       case 'Record':
         return (
           <Record
-            key={block?.sys.id}
+            key={block?.sys?.id}
             data={block as ContentfulRecordPropsFragment}
           />
         )
-      default:
+      case 'GenericContent':
         return component
           ? React.createElement(component, {
               key: block?.sys?.id,
               data: block as ContentfulGenericContentPropsFragment,
             })
           : null
+      default:
+        return assertNever(componentContentType)
     }
   })
 }

@@ -79,7 +79,7 @@ a {
   }
 }
 
-.theme-dark {
+[data-theme='dark'] {
   --color-background: var(--color-primary);
   --color-foreground: var(--color-light);
 

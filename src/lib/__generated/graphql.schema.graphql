@@ -369,7 +369,6 @@ type GenericContent implements Entry & _Node {
   mediaCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): AssetCollection
   referencesCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): GenericContentReferencesCollection
   renderAs(locale: String): String
-  richText(locale: String): GenericContentRichText
   sys: Sys!
 }
 
@@ -476,9 +475,6 @@ input GenericContentFilter {
   renderAs_not: String
   renderAs_not_contains: String
   renderAs_not_in: [String]
-  richText_contains: String
-  richText_exists: Boolean
-  richText_not_contains: String
   sys: SysFilter
 }
 
@@ -536,46 +532,6 @@ type GenericContentReferencesCollection {
   limit: Int!
   skip: Int!
   total: Int!
-}
-
-type GenericContentRichText {
-  json: JSON!
-  links: GenericContentRichTextLinks!
-}
-
-type GenericContentRichTextAssets {
-  block: [Asset]!
-  hyperlink: [Asset]!
-}
-
-type GenericContentRichTextEntries {
-  block: [Entry]!
-  hyperlink: [Entry]!
-  inline: [Entry]!
-}
-
-type GenericContentRichTextLinks {
-  assets: GenericContentRichTextAssets!
-  entries: GenericContentRichTextEntries!
-  resources: GenericContentRichTextResources!
-}
-
-type GenericContentRichTextResources {
-  block: [GenericContentRichTextResourcesBlock!]!
-  hyperlink: [GenericContentRichTextResourcesHyperlink!]!
-  inline: [GenericContentRichTextResourcesInline!]!
-}
-
-type GenericContentRichTextResourcesBlock implements ResourceLink {
-  sys: ResourceSys!
-}
-
-type GenericContentRichTextResourcesHyperlink implements ResourceLink {
-  sys: ResourceSys!
-}
-
-type GenericContentRichTextResourcesInline implements ResourceLink {
-  sys: ResourceSys!
 }
 
 """
@@ -913,11 +869,11 @@ type PageBuilder implements Entry & _Node {
   _id: ID!
   blocksCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, where: PageBuilderBlocksFilter): PageBuilderBlocksCollection
   contentfulMetadata: ContentfulMetadata!
+  copy(locale: String): String
   date(locale: String): DateTime
   description(locale: String): String
   entryTitle(locale: String): String
   linkedFrom(allowedLocales: [String]): PageBuilderLinkingCollections
-  richText(locale: String): PageBuilderRichText
   slug(locale: String): String
   sys: Sys!
   tags(locale: String): [String]
@@ -961,6 +917,13 @@ input PageBuilderFilter {
   blocks: cfblocksMultiTypeNestedFilter
   blocksCollection_exists: Boolean
   contentfulMetadata: ContentfulMetadataFilter
+  copy: String
+  copy_contains: String
+  copy_exists: Boolean
+  copy_in: [String]
+  copy_not: String
+  copy_not_contains: String
+  copy_not_in: [String]
   date: DateTime
   date_exists: Boolean
   date_gt: DateTime
@@ -984,9 +947,6 @@ input PageBuilderFilter {
   entryTitle_not: String
   entryTitle_not_contains: String
   entryTitle_not_in: [String]
-  richText_contains: String
-  richText_exists: Boolean
-  richText_not_contains: String
   slug: String
   slug_contains: String
   slug_exists: Boolean
@@ -1044,46 +1004,6 @@ enum PageBuilderOrder {
   sys_publishedVersion_DESC
   title_ASC
   title_DESC
-}
-
-type PageBuilderRichText {
-  json: JSON!
-  links: PageBuilderRichTextLinks!
-}
-
-type PageBuilderRichTextAssets {
-  block: [Asset]!
-  hyperlink: [Asset]!
-}
-
-type PageBuilderRichTextEntries {
-  block: [Entry]!
-  hyperlink: [Entry]!
-  inline: [Entry]!
-}
-
-type PageBuilderRichTextLinks {
-  assets: PageBuilderRichTextAssets!
-  entries: PageBuilderRichTextEntries!
-  resources: PageBuilderRichTextResources!
-}
-
-type PageBuilderRichTextResources {
-  block: [PageBuilderRichTextResourcesBlock!]!
-  hyperlink: [PageBuilderRichTextResourcesHyperlink!]!
-  inline: [PageBuilderRichTextResourcesInline!]!
-}
-
-type PageBuilderRichTextResourcesBlock implements ResourceLink {
-  sys: ResourceSys!
-}
-
-type PageBuilderRichTextResourcesHyperlink implements ResourceLink {
-  sys: ResourceSys!
-}
-
-type PageBuilderRichTextResourcesInline implements ResourceLink {
-  sys: ResourceSys!
 }
 
 type PageCollection {
@@ -1667,6 +1587,13 @@ input cfPageBuilderNestedFilter {
   OR: [cfPageBuilderNestedFilter]
   blocksCollection_exists: Boolean
   contentfulMetadata: ContentfulMetadataFilter
+  copy: String
+  copy_contains: String
+  copy_exists: Boolean
+  copy_in: [String]
+  copy_not: String
+  copy_not_contains: String
+  copy_not_in: [String]
   date: DateTime
   date_exists: Boolean
   date_gt: DateTime
@@ -1690,9 +1617,6 @@ input cfPageBuilderNestedFilter {
   entryTitle_not: String
   entryTitle_not_contains: String
   entryTitle_not_in: [String]
-  richText_contains: String
-  richText_exists: Boolean
-  richText_not_contains: String
   slug: String
   slug_contains: String
   slug_exists: Boolean

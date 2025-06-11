@@ -11,9 +11,7 @@ fragment PageBuilderCollectionFields on PageBuilder {
   title
   description
   date
-  richText {
-    json
-  }
+  copy
   tags
   thumbnail {
     url
