@@ -21,14 +21,14 @@ export default function Nav({
         className={styles.list}
         style={{ '--nav-item-count': data?.length } as CSSProperties}
       >
-        {data?.map((page, index) => {
+        {data?.map((page) => {
           if (!page?.slug || !page?.title) return ''
           const isActive =
             page.slug === '/'
               ? pathname === '/'
               : pathname.startsWith(page.slug)
           return (
-            <li key={index} className={styles.listItem}>
+            <li key={page?.sys?.id} className={styles.listItem}>
               <Link
                 className={`${styles.listLink} ${isActive ? styles.listLinkActive : ''}`}
                 href={page.slug}

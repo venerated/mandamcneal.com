@@ -1,45 +1,20 @@
-import { useEffect, useState } from 'react'
+'use client'
+
+import { useTheme } from '@/context/ThemeProvider'
 
 import styles from './themeSwitcher.module.scss'
 
 export default function ThemeSwitcher() {
-  const [theme, setTheme] = useState('light')
-
-  useEffect(() => {
-    const stored = window.localStorage.getItem('theme')
-    if (stored === 'dark' || stored === 'light') {
-      setTheme(stored)
-    } else {
-      // No stored preference → respect OS setting
-      const prefersDark = window.matchMedia(
-        '(prefers-color-scheme: dark)'
-      ).matches
-      setTheme(prefersDark ? 'dark' : 'light')
-    }
-  }, [])
-
-  useEffect(() => {
-    window.localStorage.setItem('theme', theme)
-
-    // remove the opposite class, then add the new one
-    if (theme === 'dark') {
-      document.body.classList.remove('theme-light')
-      document.body.classList.add('theme-dark')
-    } else {
-      document.body.classList.remove('theme-dark')
-      document.body.classList.add('theme-light')
-    }
-  }, [theme])
-
-  const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light')
-  }
+  const { theme, toggleTheme } = useTheme()
 
   return (
     <button
       className={styles.wrap}
       onClick={toggleTheme}
-      aria-label="Switch Theme"
+      aria-label={
+        theme === 'dark' ? 'Activate Light Mode' : 'Activate Dark Mode'
+      }
+      aria-pressed={theme === 'dark'}
     >
       {theme === 'dark' ? (
         <svg

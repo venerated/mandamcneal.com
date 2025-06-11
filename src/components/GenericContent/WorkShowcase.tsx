@@ -1,6 +1,5 @@
 import { ContentfulGenericContentPropsFragment } from '@/lib/__generated/sdk'
 import Section from '@/components/Section'
-import RichText from '@/components/RichText'
 import CopyBlock from '@/components/CopyBlock'
 import GenericContentHeader from '@/components/GenericContent/Header'
 import Image from 'next/image'
@@ -9,6 +8,7 @@ import styles from './workShowcase.module.scss'
 import genericContent from './genericContent'
 import contentfulImageLoader from '@/lib/contentfulImageLoader'
 import React from 'react'
+import Markdown from '@/components/Markdown'
 
 export default function WorkShowcase({
   data,
@@ -24,7 +24,7 @@ export default function WorkShowcase({
       {heading ? <GenericContentHeader data={data} /> : null}
       {copy ? (
         <CopyBlock>
-          <RichText data={copy} />
+          <Markdown md={copy ?? null} />
         </CopyBlock>
       ) : null}
       {desktopImage || mobileImage ? (

@@ -2,27 +2,51 @@ import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw'
-import rehypeHighlight from 'rehype-highlight'
-import 'highlight.js/styles/a11y-dark.css' // pick your poison
-import Heading from './Heading'
+import rehypeSanitize from 'rehype-sanitize'
 
-type UlProps = {
-  children?: React.ReactNode
-  node: unknown
+import Heading, { type HeadingSizes } from './Heading'
+
+import styles from './markdown.module.scss'
+
+const markdownHeading = (
+  size: HeadingSizes,
+  children: React.ReactNode,
+  props: React.HTMLAttributes<HTMLHeadingElement>
+) => {
+  return (
+    <Heading as={size} size={size} {...props}>
+      {children}
+    </Heading>
+  )
 }
 
-const InlineUl: React.FC<UlProps> = ({ children }) => {
-  const nodes = React.Children.toArray(children)
-  const textEls = nodes
-    .map((node, i) =>
-      React.isValidElement<{ children: React.ReactNode }>(node)
-        ? node.props.children
-        : node
-    )
-    .filter((item) => item !== '\n')
-  const listItems = textEls?.join(', ')
+const markdownLink = (
+  href: string,
+  children: React.ReactNode,
+  props: React.HTMLAttributes<HTMLAnchorElement>
+) => {
+  return (
+    <a
+      {...props}
+      href={href}
+      target={href.startsWith('http') ? '_blank' : undefined}
+      rel="noopener noreferrer"
+    >
+      {children}
+    </a>
+  )
+}
 
-  return <span>{listItems}</span>
+const markdownList = (
+  listInline: boolean,
+  children: React.ReactNode,
+  props: React.HTMLAttributes<HTMLUListElement>
+) => {
+  return (
+    <ul className={listInline ? styles.commaList : ''} {...props}>
+      {children}
+    </ul>
+  )
 }
 
 export default function Markdown({
@@ -37,56 +61,14 @@ export default function Markdown({
   return (
     <ReactMarkdown
       remarkPlugins={[remarkGfm]}
-      rehypePlugins={[rehypeRaw, rehypeHighlight]}
+      rehypePlugins={[rehypeRaw, rehypeSanitize]}
       components={{
-        h2: ({ children, ...props }) => (
-          <Heading as="h2" size="h2" {...props}>
-            {children}
-          </Heading>
-        ),
-        h3: ({ children, ...props }) => (
-          <Heading as="h3" size="h3" {...props}>
-            {children}
-          </Heading>
-        ),
-        a: ({ href = '', children, ...props }) => (
-          <a
-            {...props}
-            href={href}
-            target={href.startsWith('http') ? '_blank' : undefined}
-            rel="noopener noreferrer"
-            className="underline decoration-blue-600 hover:opacity-80"
-          >
-            {children}
-          </a>
-        ),
-        // code({ inline, className, children, ...props }) {
-        //   const match = /language-(\w+)/.exec(className || '')
-        //   if (!inline && match) {
-        //     return (
-        //       <pre className="mb-6 rounded bg-zinc-900 p-4 overflow-x-auto">
-        //         <code {...props} className={className}>
-        //           {children}
-        //         </code>
-        //       </pre>
-        //     )
-        //   }
-        //   return (
-        //     <code
-        //       {...props}
-        //       className="rounded bg-zinc-100 px-1 py-0.5 text-sm font-mono"
-        //     >
-        //       {children}
-        //     </code>
-        //   )
-        // },
-        ul({ children, node }) {
-          return listInline ? (
-            <InlineUl children={children} node={node} />
-          ) : (
-            <ul>{children}</ul>
-          )
-        },
+        h2: ({ children, ...props }) => markdownHeading('h2', children, props),
+        h3: ({ children, ...props }) => markdownHeading('h3', children, props),
+        a: ({ href = '', children, ...props }) =>
+          markdownLink(href, children, props),
+        ul: ({ children, ...props }) =>
+          markdownList(listInline, children, props),
       }}
     >
       {md}

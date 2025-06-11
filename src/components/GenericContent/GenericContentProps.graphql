@@ -6,9 +6,6 @@ fragment GenericContentProps on GenericContent {
   heading
   headingSize
   headingTag
-  richText {
-    json
-  }
   copy
   mediaCollection {
     items {

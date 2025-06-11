@@ -4,6 +4,7 @@ import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 
 import Layout from '@/components/Layout'
+import { ThemeProvider } from '@/context/ThemeProvider'
 
 import './globals.scss'
 import 'normalize.css'
@@ -36,9 +37,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${displayFont.variable} ${bodyFont.variable}`}>
-        <Layout>{children}</Layout>
-        <Analytics />
-        <SpeedInsights />
+        <ThemeProvider>
+          <Layout>{children}</Layout>
+          <Analytics />
+          <SpeedInsights />
+        </ThemeProvider>
       </body>
     </html>
   )

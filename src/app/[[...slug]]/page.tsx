@@ -13,6 +13,8 @@ export async function generateMetadata({
 }: {
   params: Promise<{ slug: string[] }>
 }) {
+  if (!process.env.NEXT_PUBLIC_BASE_URL)
+    throw new Error('Public base URL missing.')
   const { isEnabled } = await draftMode()
   const preview = isEnabled || process.env.NODE_ENV === 'development'
   const gqlClient = preview ? previewClient : client
@@ -82,7 +84,7 @@ export default async function Page({
   const page = pageBuilderCollection?.items[0]
   const blocks = page?.blocksCollection
 
-  const isArticle = page?.richText && slug.includes('blog')
+  const isArticle = page?.copy && slug.includes('blog')
 
   if (!page) {
     notFound()

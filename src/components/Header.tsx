@@ -24,7 +24,7 @@ export default function Header({
     if (navOpen) {
       setNavOpen(false)
     }
-  }, [pathname])
+  }, [pathname, navOpen])
 
   return (
     <header className={`${styles.wrap} ${navOpen ? styles.open : ''}`}>

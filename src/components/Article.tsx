@@ -3,10 +3,10 @@ import Image from 'next/image'
 import { ContentfulPageBuilderFieldsFragment } from '@/lib/__generated/sdk'
 import Heading from './Heading'
 import CopyBlock from '@/components/CopyBlock'
-import RichText from '@/components/RichText'
 
 import styles from './article.module.scss'
 import contentfulImageLoader from '@/lib/contentfulImageLoader'
+import Markdown from '@/components/Markdown'
 
 export default function Article({
   data,
@@ -36,9 +36,9 @@ export default function Article({
           />
         </div>
       ) : null}
-      {data?.richText ? (
+      {data?.copy ? (
         <CopyBlock>
-          <RichText data={data?.richText?.json} />
+          <Markdown md={data?.copy} />
         </CopyBlock>
       ) : null}
     </article>

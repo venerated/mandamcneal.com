@@ -7,8 +7,6 @@ import GenericContentHeader from '@/components/GenericContent/Header'
 
 import { type ContentfulGenericContentPropsFragment } from '@/lib/__generated/sdk'
 
-import styles from './cards.module.scss'
-
 export default function Cards({
   data,
 }: {
