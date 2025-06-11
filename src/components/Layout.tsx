@@ -6,7 +6,6 @@ import Main from '@/components/Main'
 import { client, previewClient } from '@/lib/client'
 
 import styles from './layout.module.scss'
-import { ContentfulCallToAction } from '@/lib/__generated/sdk'
 
 export default async function Layout({
   children,

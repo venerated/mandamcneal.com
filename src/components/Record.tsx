@@ -1,6 +1,5 @@
 import { ContentfulRecordPropsFragment } from '@/lib/__generated/sdk'
 import Section from '@/components/Section'
-import Grid from '@/components/Grid'
 import React from 'react'
 import Markdown from './Markdown'
 

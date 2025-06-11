@@ -5,7 +5,6 @@ const nextConfig: NextConfig = {
     unoptimized: true,
   },
   output: 'export',
-  instrumentationHook: true,
 }
 
 export default nextConfig

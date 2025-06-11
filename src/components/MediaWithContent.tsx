@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { format, formatDistance, formatRelative, subDays } from 'date-fns'
+import { format } from 'date-fns'
 
 import Button from '@/components/Button'
 import Heading from '@/components/Heading'

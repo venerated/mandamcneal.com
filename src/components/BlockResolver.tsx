@@ -51,9 +51,9 @@ export default function BlockResolver({
 }) {
   return data?.map((block) => {
     const contentType = block?.__typename
-    if (!contentType) return <div>Missing contentType</div>
+    if (!contentType) return <div key={block?.sys.id}>Missing contentType</div>
 
-    let componentId: ComponentId = contentType
+    const componentId: ComponentId = contentType
     let component: LazyComponent | LazyAsyncComponent | null = null
     if (contentType === 'GenericContent') {
       const renderAs = (block?.renderAs ?? 'Default') as RenderAs

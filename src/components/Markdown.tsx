@@ -14,7 +14,7 @@ type UlProps = {
 const InlineUl: React.FC<UlProps> = ({ children }) => {
   const nodes = React.Children.toArray(children)
   const textEls = nodes
-    .map((node, i) =>
+    .map((node) =>
       React.isValidElement<{ children: React.ReactNode }>(node)
         ? node.props.children
         : node
@@ -82,7 +82,7 @@ export default function Markdown({
         // },
         ul({ children, node }) {
           return listInline ? (
-            <InlineUl children={children} node={node} />
+            <InlineUl node={node}>{children}</InlineUl>
           ) : (
             <ul>{children}</ul>
           )
