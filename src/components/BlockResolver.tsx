@@ -1,7 +1,6 @@
 import React from 'react'
 import { isValidElementType } from 'react-is'
 
-import BlogListing from '@/components/GenericContent/BlogListing'
 import Cards from '@/components/GenericContent/Cards'
 import Default from '@/components/GenericContent/Default'
 import Listing from '@/components/GenericContent/Listing'
@@ -9,14 +8,12 @@ import Record from '@/components/Record'
 import WorkShowcase from '@/components/GenericContent/WorkShowcase'
 
 import type {
-  ContentfulGenericContentPropsFragment,
+  ContentfulGenericContentFieldsFragment,
   ContentfulRecordPropsFragment,
   ContentfulRecordFieldsFragment,
-  ContentfulGenericContentFieldsFragment,
 } from '@/lib/__generated/sdk'
 
 const componentMap = {
-  BlogListing,
   Cards,
   Default,
   Listing,
@@ -28,13 +25,13 @@ type RenderAs = keyof typeof componentMap
 type DynamicComponent = ({
   data,
 }: {
-  data: ContentfulGenericContentPropsFragment
+  data: ContentfulGenericContentFieldsFragment
 }) => React.JSX.Element
 
 type AsyncDynamicComponent = ({
   data,
 }: {
-  data: ContentfulGenericContentPropsFragment
+  data: ContentfulGenericContentFieldsFragment
 }) => Promise<React.JSX.Element>
 
 function assertNever(x: never): never {
@@ -83,7 +80,7 @@ export default function BlockResolver({
         return component
           ? React.createElement(component, {
               key: block?.sys?.id,
-              data: block as ContentfulGenericContentPropsFragment,
+              data: block as ContentfulGenericContentFieldsFragment,
             })
           : null
       default:

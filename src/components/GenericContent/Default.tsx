@@ -1,20 +1,21 @@
-import { ContentfulGenericContentPropsFragment } from '@/lib/__generated/sdk'
-import Section from '@/components/Section'
 import CopyBlock from '@/components/CopyBlock'
 import GenericContentHeader from '@/components/GenericContent/Header'
+import Markdown from '@/components/Markdown'
+import Section from '@/components/Section'
+import genericContent from '@/lib/genericContent'
 
-import Markdown from '../Markdown'
+import { type ContentfulGenericContentFieldsFragment } from '@/lib/__generated/sdk'
 
 export default function Default({
   data,
 }: {
-  data: ContentfulGenericContentPropsFragment
+  data: ContentfulGenericContentFieldsFragment
 }) {
-  const copy = data?.copy ?? ''
+  const { copy, heading } = genericContent(data)
 
   return (
     <Section>
-      {data?.heading ? <GenericContentHeader data={data} /> : null}
+      {heading ? <GenericContentHeader data={data} /> : null}
       {copy ? (
         <CopyBlock>
           <Markdown md={copy ?? null} />

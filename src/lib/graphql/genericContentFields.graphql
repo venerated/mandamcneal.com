@@ -1,4 +1,4 @@
-fragment GenericContentProps on GenericContent {
+fragment GenericContentFields on GenericContent {
   sys {
     id
   }
@@ -6,17 +6,6 @@ fragment GenericContentProps on GenericContent {
   heading
   headingSize
   headingTag
-  copy
-  mediaCollection {
-    items {
-      sys {
-        id
-      }
-      url
-      width
-      height
-    }
-  }
   ctasCollection(limit: 10) {
     items {
       sys {
@@ -28,6 +17,19 @@ fragment GenericContentProps on GenericContent {
       target
     }
   }
+  copy
+  mediaCollection {
+    items {
+      sys {
+        id
+      }
+      url
+      width
+      height
+    }
+  }
+  autoReference
+  autoReferenceLimit
   referencesCollection(limit: 10) {
     items {
       __typename

@@ -1,24 +1,24 @@
-import { ContentfulGenericContentPropsFragment } from '@/lib/__generated/sdk'
-import Heading, { HeadingSizes } from '@/components/Heading'
+import Button from '@/components/Button'
+import Heading from '@/components/Heading'
+import genericContent from '@/lib/genericContent'
+
+import { type ContentfulGenericContentFieldsFragment } from '@/lib/__generated/sdk'
 
 import styles from './header.module.scss'
-import Button from '@/components/Button'
 
 export default function Header({
   data,
 }: {
-  data: ContentfulGenericContentPropsFragment
+  data: ContentfulGenericContentFieldsFragment
 }) {
-  const tag = (data?.headingTag ?? 'h2') as HeadingSizes
-  const size = (data?.headingSize ?? 'h2') as HeadingSizes
-  const ctas = data?.ctasCollection?.items ?? []
+  const { ctas, heading, headingTag, headingSize } = genericContent(data)
 
   return (
     <div className={styles.header}>
       <div className={styles.heading}>
-        {data?.heading ? (
-          <Heading as={tag} size={size}>
-            {data?.heading}
+        {heading ? (
+          <Heading as={headingTag} size={headingSize}>
+            {heading}
           </Heading>
         ) : null}
       </div>

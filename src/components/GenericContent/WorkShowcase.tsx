@@ -1,19 +1,21 @@
-import { ContentfulGenericContentPropsFragment } from '@/lib/__generated/sdk'
-import Section from '@/components/Section'
+import Image from 'next/image'
+import React from 'react'
+
 import CopyBlock from '@/components/CopyBlock'
 import GenericContentHeader from '@/components/GenericContent/Header'
-import Image from 'next/image'
+import Markdown from '@/components/Markdown'
+import Section from '@/components/Section'
+import contentfulImageLoader from '@/lib/contentfulImageLoader'
+import genericContent from '@/lib/genericContent'
+
+import { type ContentfulGenericContentFieldsFragment } from '@/lib/__generated/sdk'
 
 import styles from './workShowcase.module.scss'
-import genericContent from './genericContent'
-import contentfulImageLoader from '@/lib/contentfulImageLoader'
-import React from 'react'
-import Markdown from '@/components/Markdown'
 
 export default function WorkShowcase({
   data,
 }: {
-  data: ContentfulGenericContentPropsFragment
+  data: ContentfulGenericContentFieldsFragment
 }) {
   const { copy, heading, media } = genericContent(data)
   const desktopImage = media?.length ? media[0] : null

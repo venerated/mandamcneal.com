@@ -1,10 +1,12 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
+import ThemeSwitcher from '@/components/ThemeSwitcher'
+
+import { type ContentfulNavItemFieldsFragment } from '@/lib/__generated/sdk'
+import { type CSSProperties } from 'react'
+
 import styles from './nav.module.scss'
-import { ContentfulNavItemFieldsFragment } from '@/lib/__generated/sdk'
-import { CSSProperties } from 'react'
-import ThemeSwitcher from './ThemeSwitcher'
 
 export default function Nav({
   data,

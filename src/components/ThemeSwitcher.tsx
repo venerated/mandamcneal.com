@@ -2,15 +2,18 @@
 
 import { useTheme } from '@/context/ThemeProvider'
 
+import Button from '@/components/Button'
+
 import styles from './themeSwitcher.module.scss'
 
 export default function ThemeSwitcher() {
   const { theme, toggleTheme } = useTheme()
 
   return (
-    <button
+    <Button
       className={styles.wrap}
       onClick={toggleTheme}
+      variant="ghost"
       aria-label={
         theme === 'dark' ? 'Activate Light Mode' : 'Activate Dark Mode'
       }
@@ -59,6 +62,6 @@ export default function ThemeSwitcher() {
           <path d="M16 18a4 4 0 0 0-8 0" />
         </svg>
       )}
-    </button>
+    </Button>
   )
 }

@@ -1,15 +1,15 @@
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
-import remarkGfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw'
 import rehypeSanitize from 'rehype-sanitize'
+import remarkGfm from 'remark-gfm'
 
-import Heading, { type HeadingSizes } from './Heading'
+import Heading, { type HeadingSize } from '@/components/Heading'
 
 import styles from './markdown.module.scss'
 
 const markdownHeading = (
-  size: HeadingSizes,
+  size: HeadingSize,
   children: React.ReactNode,
   props: React.HTMLAttributes<HTMLHeadingElement>
 ) => {

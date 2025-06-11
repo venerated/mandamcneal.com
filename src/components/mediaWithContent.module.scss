@@ -7,20 +7,34 @@
   grid-template-columns: 1fr;
   transition: border var(--default-transition);
 
-  @include mixins.media('desktop') {
-    grid-template-columns: 1fr 1fr;
+  &.horizontal {
+    @include mixins.media('desktop') {
+      grid-template-columns: 50% 1fr;
+    }
   }
 }
 
 .media {
-  height: 100%;
-  position: relative;
+  aspect-ratio: 402 / 227;
+
+  transition: border var(--default-transition);
+
+  .horizontal & {
+    @include mixins.media('desktop') {
+      aspect-ratio: auto;
+      border-bottom: 0;
+      border-right: var(--default-border);
+    }
+  }
+
+  .vertical & {
+    border-bottom: var(--default-border);
+  }
 }
 
 .image {
   height: 100%;
   object-fit: cover;
-  position: absolute;
   width: 100%;
 }
 

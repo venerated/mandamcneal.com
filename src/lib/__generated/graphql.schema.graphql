@@ -783,73 +783,6 @@ The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://
 scalar JSON
 
 """
-[See type definition](https://app.contentful.com/spaces/2dcscgnzpk4t/content_types/labelAndDescription)
-"""
-type LabelAndDescription implements Entry & _Node {
-  _id: ID!
-  contentfulMetadata: ContentfulMetadata!
-  description(locale: String): String
-  entryTitle(locale: String): String
-  label(locale: String): String
-  linkedFrom(allowedLocales: [String]): LabelAndDescriptionLinkingCollections
-  sys: Sys!
-}
-
-type LabelAndDescriptionCollection {
-  items: [LabelAndDescription]!
-  limit: Int!
-  skip: Int!
-  total: Int!
-}
-
-input LabelAndDescriptionFilter {
-  AND: [LabelAndDescriptionFilter]
-  OR: [LabelAndDescriptionFilter]
-  contentfulMetadata: ContentfulMetadataFilter
-  description: String
-  description_contains: String
-  description_exists: Boolean
-  description_in: [String]
-  description_not: String
-  description_not_contains: String
-  description_not_in: [String]
-  entryTitle: String
-  entryTitle_contains: String
-  entryTitle_exists: Boolean
-  entryTitle_in: [String]
-  entryTitle_not: String
-  entryTitle_not_contains: String
-  entryTitle_not_in: [String]
-  label: String
-  label_contains: String
-  label_exists: Boolean
-  label_in: [String]
-  label_not: String
-  label_not_contains: String
-  label_not_in: [String]
-  sys: SysFilter
-}
-
-type LabelAndDescriptionLinkingCollections {
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
-}
-
-enum LabelAndDescriptionOrder {
-  entryTitle_ASC
-  entryTitle_DESC
-  label_ASC
-  label_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
-}
-
-"""
 Used for general top-level pages. [See type definition](https://app.contentful.com/spaces/2dcscgnzpk4t/content_types/page)
 """
 type Page implements Entry & _Node {
@@ -1267,8 +1200,6 @@ type Query {
   genericContentCollection(limit: Int = 100, locale: String, order: [GenericContentOrder], preview: Boolean, skip: Int = 0, where: GenericContentFilter): GenericContentCollection
   globalSettings(id: String!, locale: String, preview: Boolean): GlobalSettings
   globalSettingsCollection(limit: Int = 100, locale: String, order: [GlobalSettingsOrder], preview: Boolean, skip: Int = 0, where: GlobalSettingsFilter): GlobalSettingsCollection
-  labelAndDescription(id: String!, locale: String, preview: Boolean): LabelAndDescription
-  labelAndDescriptionCollection(limit: Int = 100, locale: String, order: [LabelAndDescriptionOrder], preview: Boolean, skip: Int = 0, where: LabelAndDescriptionFilter): LabelAndDescriptionCollection
   page(id: String!, locale: String, preview: Boolean): Page
   pageBuilder(id: String!, locale: String, preview: Boolean): PageBuilder
   pageBuilderCollection(limit: Int = 100, locale: String, order: [PageBuilderOrder], preview: Boolean, skip: Int = 0, where: PageBuilderFilter): PageBuilderCollection

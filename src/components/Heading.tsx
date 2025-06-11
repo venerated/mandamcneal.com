@@ -1,6 +1,6 @@
 import styles from './heading.module.scss'
 
-export type HeadingSizes = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+export type HeadingSize = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
 
 export default function Heading({
   size = 'h2',
@@ -8,8 +8,8 @@ export default function Heading({
   className = '',
   children,
 }: {
-  size?: HeadingSizes
-  as?: HeadingSizes
+  size?: HeadingSize
+  as?: HeadingSize
   className?: string
   children: React.ReactNode
 }) {

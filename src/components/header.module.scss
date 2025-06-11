@@ -89,8 +89,7 @@
   background-color: var(--color-background);
   border: var(--default-border);
   border-radius: var(--border-radius);
-  box-shadow: var(--button-shadow-width) var(--button-shadow-width) 0
-    var(--color-button-shadow);
+  box-shadow: var(--shadow-width) var(--shadow-width) 0 var(--color-shadow);
   left: 0;
   opacity: 0;
   overflow: hidden;
@@ -102,7 +101,7 @@
     border var(--default-transition);
   width: 100%;
 
-  @include mixins.media('tablet') {
+  @include mixins.media('desktop') {
     align-self: stretch;
     background-color: transparent;
     border: 0;
