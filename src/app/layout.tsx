@@ -1,5 +1,7 @@
 import localFont from 'next/font/local'
 import { Inter } from 'next/font/google'
+import { Analytics } from '@vercel/analytics/next'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 import Layout from '@/components/Layout'
 
@@ -35,6 +37,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${displayFont.variable} ${bodyFont.variable}`}>
         <Layout>{children}</Layout>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   )
