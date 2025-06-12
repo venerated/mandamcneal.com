@@ -7,8 +7,8 @@
   color: inherit;
   cursor: pointer;
   height: 100%;
-  padding-block: var(--space-4);
-  padding-inline: var(--space-4);
+  --padding-block: var(--space-4);
+  --padding-inline: var(--space-4);
   width: 100%;
 
   @include mixins.media('desktop') {

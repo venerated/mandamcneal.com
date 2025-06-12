@@ -2,7 +2,7 @@ import styles from './section.module.scss'
 
 export default function Section({
   children,
-  className,
+  className = '',
 }: {
   children: React.ReactNode
   className?: string

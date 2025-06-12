@@ -1,7 +1,9 @@
-import { ContentfulRecordPropsFragment } from '@/lib/__generated/sdk'
-import Section from '@/components/Section'
 import React from 'react'
-import Markdown from './Markdown'
+
+import Markdown from '@/components/Markdown'
+import Section from '@/components/Section'
+
+import { type ContentfulRecordPropsFragment } from '@/lib/__generated/sdk'
 
 import styles from './record.module.scss'
 

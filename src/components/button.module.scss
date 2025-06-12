@@ -1,21 +1,34 @@
 .wrap {
   appearance: none;
   background-color: transparent;
-  border: var(--border-width) solid var(--color-button-border);
+  border: var(--button-border-width) solid var(--color-button-border);
   border-radius: var(--border-radius);
   box-shadow: var(--button-shadow-width) var(--button-shadow-width) 0
-    var(--color-button-shadow);
+    var(--color-shadow);
   color: var(--color-button);
   cursor: pointer;
   display: inline-block;
   font-family: var(--font-display);
-  margin-block-end: 4px;
-  padding-block: var(--space-2);
-  padding-inline: var(--space-8);
+
+  padding-block: var(--padding-block);
+  padding-inline: var(--padding-inline);
   text-decoration: none;
   transition:
     box-shadow var(--default-transition),
     color var(--default-transition);
+}
+
+.ghost {
+  --color-button: inherit;
+}
+
+.primary {
+  --button-border-width: var(--border-width);
+  --button-shadow-width: var(--shadow-width);
+  --button-shadow-width--hover: 0;
+  --padding-block: var(--space-2);
+  --padding-inline: var(--space-8);
+  margin-block-end: var(--shadow-width);
 
   &:hover {
     --color-button: var(--color-button--hover);

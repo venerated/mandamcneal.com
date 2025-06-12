@@ -1,12 +1,13 @@
-import Image from 'next/image'
 import { format } from 'date-fns'
+import Image from 'next/image'
 
 import Button from '@/components/Button'
 import Heading from '@/components/Heading'
+import contentfulImageLoader from '@/lib/contentfulImageLoader'
+
+import { type ContentfulPageBuilderFieldsFragment } from '@/lib/__generated/sdk'
 
 import styles from './mediaWithContent.module.scss'
-import contentfulImageLoader from '@/lib/contentfulImageLoader'
-import { ContentfulPageBuilderFieldsFragment } from '@/lib/__generated/sdk'
 
 export default function MediaWithContent({
   date,
@@ -15,12 +16,16 @@ export default function MediaWithContent({
   thumbnail,
   tags,
   title,
-}: ContentfulPageBuilderFieldsFragment) {
-  let formattedDate
-  if (date) formattedDate = format(date, 'MM/dd/yyyy')
+  layout = 'horizontal',
+  showDate = false,
+}: ContentfulPageBuilderFieldsFragment & {
+  layout?: 'horizontal' | 'vertical'
+  showDate?: boolean
+}) {
+  const formattedDate = date ? format(date, 'MM/dd/yyyy') : ''
 
   return (
-    <div className={styles.wrap}>
+    <div className={`${styles.wrap} ${styles[layout]}`}>
       {thumbnail?.url ? (
         <div className={styles.media}>
           <Image
@@ -38,7 +43,7 @@ export default function MediaWithContent({
             {title}
           </Heading>
         ) : null}
-        {formattedDate ? (
+        {showDate && formattedDate ? (
           <time className={styles.date}>{formattedDate}</time>
         ) : null}
         {description ? (

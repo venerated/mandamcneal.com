@@ -12,7 +12,7 @@
   --color-button--hover: var(--color-foreground);
   --color-button-border: var(--color-foreground);
   --color-button-border--hover: var(--color-foreground);
-  --color-button-shadow: var(--color-foreground);
+  --color-shadow: var(--color-foreground);
 
   // Spacing
   --spacing-unit: 4px;
@@ -30,8 +30,7 @@
   // Sizes
   --border-width: 1px;
   --border-radius: var(--space-4);
-  --button-shadow-width: 4px;
-  --button-shadow-width--hover: 0;
+  --shadow-width: 4px;
 
   // Timing
   --transition-duration: 0.2s;
@@ -89,7 +88,7 @@ a {
   --color-button--hover: var(--color-foreground);
   --color-button-border: var(--color-foreground);
   --color-button-border--hover: var(--color-foreground);
-  --color-button-shadow: var(--color-foreground);
+  --color-shadow: var(--color-foreground);
 
   --default-border: var(--border-width) solid var(--color-border);
 }

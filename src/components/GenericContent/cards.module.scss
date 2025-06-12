@@ -1,0 +1,11 @@
+@use '@/styles/mixins' as mixins;
+
+.content {
+  display: grid;
+  gap: var(--space-8);
+  grid-template-columns: 1fr;
+
+  @include mixins.media('desktop') {
+    grid-template-columns: 1fr 1fr;
+  }
+}

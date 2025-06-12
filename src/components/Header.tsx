@@ -1,15 +1,16 @@
 'use client'
 
-import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { useEffect, useState } from 'react'
 
+import Button from '@/components/Button'
+import Heading from '@/components/Heading'
 import Nav from '@/components/Nav'
-import Heading from './Heading'
 
 import styles from './header.module.scss'
 
 import { type ContentfulNavItemFieldsFragment } from '@/lib/__generated/sdk'
-import { usePathname } from 'next/navigation'
 
 export default function Header({
   navItems,
@@ -21,10 +22,8 @@ export default function Header({
   const pathname = usePathname()
 
   useEffect(() => {
-    if (navOpen) {
-      setNavOpen(false)
-    }
-  }, [pathname, navOpen])
+    setNavOpen((prev) => (prev ? false : prev))
+  }, [pathname])
 
   return (
     <header className={`${styles.wrap} ${navOpen ? styles.open : ''}`}>
@@ -37,11 +36,15 @@ export default function Header({
         className={styles.mobileMenuTrigger}
         onClick={() => setNavOpen(!navOpen)}
       >
-        <button className={styles.hamburger} aria-label="Toggle Menu">
+        <Button
+          className={styles.hamburger}
+          aria-label="Toggle Menu"
+          variant="ghost"
+        >
           <span></span>
           <span></span>
           <span></span>
-        </button>
+        </Button>
       </div>
       <Nav className={styles.nav} data={navItems} />
     </header>
