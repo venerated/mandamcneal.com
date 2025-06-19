@@ -30,10 +30,17 @@ export default function MediaWithContent({
         <div className={styles.media}>
           <Image
             className={styles.image}
-            src={contentfulImageLoader({ src: thumbnail.url, width: 800 })}
+            src={contentfulImageLoader({
+              src: thumbnail.url,
+              width: 800,
+              aspectRatio: '416x234',
+              focus: 'top',
+              format: 'jpg',
+              progressive: true,
+            })}
             alt=""
-            width={thumbnail.width ?? 0}
-            height={thumbnail.height ?? 0}
+            width={416}
+            height={234}
           />
         </div>
       ) : null}

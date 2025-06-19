@@ -40,6 +40,8 @@ export default function WorkShowcase({
                   width: 2056,
                   aspectRatio: '2056x1080',
                   focus: 'top',
+                  format: 'jpg',
+                  progressive: true,
                 })}
                 alt=""
                 width={2056}
@@ -56,6 +58,8 @@ export default function WorkShowcase({
                   width: 1024,
                   aspectRatio: '430x932',
                   focus: 'top',
+                  format: 'jpg',
+                  progressive: true,
                 })}
                 alt=""
                 width={430}
