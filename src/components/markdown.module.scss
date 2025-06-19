@@ -1,3 +1,39 @@
+@use '@/styles/mixins' as mixins;
+
+.wrap {
+  h3:not(:first-of-type) {
+    margin-top: mixins.fluid-scale(30, 40);
+  }
+
+  h4 {
+    margin-bottom: mixins.fluid-scale(10, 20);
+    margin-top: mixins.fluid-scale(30, 50);
+  }
+
+  p,
+  ul {
+    margin: 0;
+  }
+
+  ul {
+    margin-bottom: mixins.fluid-scale(20, 20);
+  }
+
+  li {
+    ul {
+      margin: 0;
+    }
+  }
+
+  p + *:not(p) {
+    margin-top: 20px;
+  }
+
+  p + p {
+    margin-top: 10px;
+  }
+}
+
 .commaList {
   display: inline;
   list-style: none;

@@ -7,6 +7,7 @@ import remarkGfm from 'remark-gfm'
 import Heading, { type HeadingSize } from '@/components/Heading'
 
 import styles from './markdown.module.scss'
+import Link from 'next/link'
 
 const markdownHeading = (
   size: HeadingSize,
@@ -26,24 +27,26 @@ const markdownLink = (
   props: React.HTMLAttributes<HTMLAnchorElement>
 ) => {
   return (
-    <a
+    <Link
       {...props}
       href={href}
       target={href.startsWith('http') ? '_blank' : undefined}
       rel="noopener noreferrer"
     >
       {children}
-    </a>
+    </Link>
   )
 }
 
 const markdownList = (
   listInline: boolean,
   children: React.ReactNode,
-  props: React.HTMLAttributes<HTMLUListElement>
+  props: React.HTMLAttributes<HTMLUListElement> & { node?: unknown }
 ) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { node, ...rest } = props
   return (
-    <ul className={listInline ? styles.commaList : ''} {...props}>
+    <ul className={listInline ? styles.commaList : undefined} {...rest}>
       {children}
     </ul>
   )
@@ -59,19 +62,27 @@ export default function Markdown({
   if (!md) return null
 
   return (
-    <ReactMarkdown
-      remarkPlugins={[remarkGfm]}
-      rehypePlugins={[rehypeRaw, rehypeSanitize]}
-      components={{
-        h2: ({ children, ...props }) => markdownHeading('h2', children, props),
-        h3: ({ children, ...props }) => markdownHeading('h3', children, props),
-        a: ({ href = '', children, ...props }) =>
-          markdownLink(href, children, props),
-        ul: ({ children, ...props }) =>
-          markdownList(listInline, children, props),
-      }}
-    >
-      {md}
-    </ReactMarkdown>
+    <div className={styles.wrap}>
+      <ReactMarkdown
+        remarkPlugins={[remarkGfm]}
+        rehypePlugins={[rehypeRaw, rehypeSanitize]}
+        components={{
+          h2: ({ children, ...props }) =>
+            markdownHeading('h2', children, props),
+          h3: ({ children, ...props }) =>
+            markdownHeading('h3', children, props),
+          h4: ({ children, ...props }) =>
+            markdownHeading('h4', children, props),
+          h5: ({ children, ...props }) =>
+            markdownHeading('h5', children, props),
+          a: ({ href = '', children, ...props }) =>
+            markdownLink(href, children, props),
+          ul: ({ children, ...props }) =>
+            markdownList(listInline, children, props),
+        }}
+      >
+        {md}
+      </ReactMarkdown>
+    </div>
   )
 }
