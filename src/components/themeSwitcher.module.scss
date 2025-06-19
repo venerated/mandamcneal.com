@@ -1,11 +1,6 @@
 @use '@/styles/mixins' as mixins;
 
 .wrap {
-  appearance: none;
-  background-color: transparent;
-  border: 0;
-  color: inherit;
-  cursor: pointer;
   height: 100%;
   --padding-block: var(--space-4);
   --padding-inline: var(--space-4);
@@ -14,4 +9,8 @@
   @include mixins.media('desktop') {
     width: 60px;
   }
+}
+
+.button {
+  width: 100%;
 }

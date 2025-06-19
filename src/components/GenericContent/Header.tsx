@@ -24,7 +24,11 @@ export default function Header({
       </div>
       <div className={styles.cta}>
         {ctas?.map((cta) => (
-          <Button key={cta?.sys?.id} href={cta?.url} target={cta?.target}>
+          <Button
+            key={cta?.sys?.id}
+            href={cta?.url ?? undefined}
+            target={cta?.target ?? undefined}
+          >
             {cta?.label}
           </Button>
         ))}
