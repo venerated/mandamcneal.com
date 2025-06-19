@@ -1,27 +1,25 @@
 // Docs: https://www.contentful.com/developers/docs/references/images-api/
 export default function contentfulImageLoader({
-  src = '',
   aspectRatio,
-  width,
-  height,
-  quality = 70,
-  format = 'webp',
-  fit,
   backgroundColor,
-  focus,
-  radius,
   border,
-  rotate,
   blur,
+  fit,
+  focus,
+  format = 'webp',
+  height,
+  progressive,
+  radius,
+  rotate,
+  src = '',
+  quality = 70,
+  width,
 }: {
-  src: string | null | undefined
   aspectRatio?: string
-  width?: number
-  height?: number
-  quality?: number
-  format?: 'jpg' | 'png' | 'webp' | 'avif' | 'gif' | 'tif'
+  backgroundColor?: string // HEX or CSS color
+  border?: { width: number; color: string } // border width in px and color as HEX or CSS
+  blur?: number // blur radius (0–100)
   fit?: 'pad' | 'fill' | 'crop' | 'scale' | 'thumb'
-  backgroundColor?: string // HEX or CSS color, e.g. '000000' or 'rgba(255,255,255,0.5)'
   focus?:
     | 'top'
     | 'bottom'
@@ -31,10 +29,14 @@ export default function contentfulImageLoader({
     | 'face'
     | 'faces'
     | 'entropy'
+  format?: 'jpg' | 'png' | 'webp' | 'avif' | 'gif' | 'tif'
+  height?: number
+  progressive?: boolean
   radius?: number // value in pixels or percentage (e.g. 50 for 50px or 50% if string)
-  border?: { width: number; color: string } // border width in px and color as HEX or CSS
   rotate?: number // rotation in degrees (0–360)
-  blur?: number // blur radius (0–100)
+  src: string | null | undefined
+  quality?: number
+  width?: number
 }): string {
   if (!src) return ''
 
@@ -106,6 +108,11 @@ export default function contentfulImageLoader({
   // Blur
   if (blur != null && blur > 0 && blur <= 100) {
     url.searchParams.set('blur', String(blur))
+  }
+
+  // Progressive JPEGs
+  if (progressive) {
+    url.searchParams.set('fl', 'progressive')
   }
 
   return url.href

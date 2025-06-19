@@ -12,6 +12,12 @@
       grid-template-columns: 50% 1fr;
     }
   }
+
+  &.vertical {
+    @include mixins.media('desktop') {
+      gap: 0;
+    }
+  }
 }
 
 .media {
