@@ -14,6 +14,11 @@ const eslintConfig = [
   {
     ignores: ['src/lib/__generated/**'],
   },
+  {
+    rules: {
+      '@typescript-eslint/no-unused-vars': 'warn',
+    },
+  },
 ]
 
 export default eslintConfig

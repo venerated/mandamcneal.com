@@ -17,16 +17,18 @@
 }
 
 .h3 {
-  font-size: 39px;
+  font-size: mixins.fluid-scale(32, 39);
+  line-height: mixins.fluid-scale(37, 42);
 }
 
 .h4 {
-  font-size: mixins.fluid-scale(27, 31);
+  font-size: mixins.fluid-scale(22, 27);
   line-height: mixins.fluid-scale(22, 25);
 }
 
 .h5 {
-  font-size: 25px;
+  font-family: var(--font-body);
+  font-size: inherit;
 }
 
 .h6 {
