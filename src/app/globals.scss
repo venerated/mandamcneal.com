@@ -1,11 +1,4 @@
-:root {
-  /* theme colors */
-  --color-light: #efefe7;
-  --color-primary: #141414;
-
-  --color-background: var(--color-light);
-  --color-foreground: var(--color-primary);
-
+@mixin theme-shared {
   // Element Colors
   --color-border: var(--color-foreground);
   --color-button: var(--color-foreground);
@@ -13,6 +6,30 @@
   --color-button-border: var(--color-foreground);
   --color-button-border--hover: var(--color-foreground);
   --color-shadow: var(--color-foreground);
+
+  --default-border: var(--border-width) solid var(--color-border);
+}
+
+@mixin theme-light {
+  --color-background: var(--color-light);
+  --color-foreground: var(--color-primary);
+
+  @include theme-shared;
+}
+
+@mixin theme-dark {
+  --color-background: var(--color-primary);
+  --color-foreground: var(--color-light);
+
+  @include theme-shared;
+}
+
+:root {
+  // Colors
+  --color-light: #efefe7;
+  --color-primary: #141414;
+
+  @include theme-light;
 
   // Spacing
   --spacing-unit: 4px;
@@ -35,8 +52,6 @@
   // Timing
   --transition-duration: 0.2s;
   --default-transition: var(--transition-duration) ease-in;
-
-  --default-border: var(--border-width) solid var(--color-border);
 }
 
 html {
@@ -79,16 +94,5 @@ a {
 }
 
 [data-theme='dark'] {
-  --color-background: var(--color-primary);
-  --color-foreground: var(--color-light);
-
-  // Element Colors
-  --color-border: var(--color-foreground);
-  --color-button: var(--color-foreground);
-  --color-button--hover: var(--color-foreground);
-  --color-button-border: var(--color-foreground);
-  --color-button-border--hover: var(--color-foreground);
-  --color-shadow: var(--color-foreground);
-
-  --default-border: var(--border-width) solid var(--color-border);
+  @include theme-dark;
 }

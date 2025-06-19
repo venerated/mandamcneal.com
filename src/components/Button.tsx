@@ -9,27 +9,35 @@ export default function Button({
   onClick,
   target = '_self',
   variant = 'primary',
-}: {
-  children: React.ReactNode
+  ref,
+  ...props
+}: React.PropsWithChildren<{
   className?: string
-  href?: string | null | undefined
-  onClick?: () => void
-  target?: '_self' | '_blank' | string | null | undefined
+  ref?: React.ForwardedRef<HTMLButtonElement | HTMLAnchorElement>
   variant?: 'primary' | 'ghost'
-}) {
+}> &
+  React.ButtonHTMLAttributes<HTMLButtonElement> &
+  React.AnchorHTMLAttributes<HTMLAnchorElement>) {
   const rel = target === '_blank' ? 'noopener noreferrer' : undefined
   const classes = `${styles.wrap} ${styles[variant]} ${className}`
   return href ? (
     <Link
       className={classes}
-      href={href ?? undefined}
-      target={target ?? undefined}
+      href={href}
+      target={target}
       rel={rel}
+      ref={ref as React.Ref<HTMLAnchorElement>}
+      {...props}
     >
       {children}
     </Link>
   ) : (
-    <button className={classes} onClick={onClick}>
+    <button
+      className={classes}
+      onClick={onClick}
+      ref={ref as React.Ref<HTMLButtonElement>}
+      {...props}
+    >
       {children}
     </button>
   )

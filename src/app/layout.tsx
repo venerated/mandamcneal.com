@@ -1,10 +1,10 @@
 import localFont from 'next/font/local'
 import { Inter } from 'next/font/google'
+import { ThemeProvider } from 'next-themes'
 import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 
 import Layout from '@/components/Layout'
-import { ThemeProvider } from '@/context/ThemeProvider'
 
 import './globals.scss'
 import 'normalize.css'
@@ -35,13 +35,13 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${displayFont.variable} ${bodyFont.variable}`}>
         <ThemeProvider>
           <Layout>{children}</Layout>
-          <Analytics />
-          <SpeedInsights />
         </ThemeProvider>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   )
